@@ -73,6 +73,7 @@
     text-transform: uppercase;
     background: linear-gradient(to bottom, #fff, #ffd700);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
 }
