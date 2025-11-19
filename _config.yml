@@ -1,0 +1,11 @@
+title: "Soham's Blog"
+description: "A gamified blog about scientific discovery and uncertainty."
+baseurl: "" 
+url: "https://shb2908.github.io" 
+
+markdown: kramdown
+theme: minima 
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+

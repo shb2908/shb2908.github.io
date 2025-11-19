@@ -1,0 +1,25 @@
+---
+layout: default
+---
+<article class="post h-entry">
+  <header class="post-header">
+    <h1 class="post-title p-name">{{ page.title | escape }}</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}">
+        {{ page.date | date: "%b %-d, %Y" }}
+      </time>
+      {% if page.categories.size > 0 %}
+        <span style="margin-left: 1rem;">Category: {{ page.categories | join: ", " }}</span>
+      {% endif %}
+    </p>
+  </header>
+
+  <div class="post-content e-content">
+    {{ content }}
+  </div>
+
+  <div class="callout callout-tip" style="margin-top: 2rem; padding: 1rem; background: #d1ecf1; border-left: 4px solid #055160; border-radius: 4px;">
+    <strong>🎮 Quest Complete!</strong> You've reached the end of this article. Keep reading to level up!
+  </div>
+</article>
+
