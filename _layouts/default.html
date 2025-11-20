@@ -5,51 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
     <link rel="stylesheet" href="{{ "/assets/css/gamify.css" | relative_url }}">
+    <!-- Font Awesome for Social Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- Minimalist XP Bar -->
+    <!-- XP Bar (Top of Main Content) -->
     <div id="xp-container"><div id="xp-bar"></div></div>
-    
-    <!-- Minimalist Stats -->
-    <div class="player-stats">
-        <div class="stat-item">
-            <span class="stat-label">LVL</span>
-            <span class="stat-value" id="level-display">1</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-label">XP</span>
-            <span class="stat-value" id="xp-display">0</span>
-        </div>
-    </div>
 
-    <div id="levelup-toast" class="levelup-toast">
-        <div class="levelup-text">Level Up! You are now Level <span id="new-level">2</span></div>
-    </div>
-
-    <!-- Header -->
-    <header class="site-header">
-        <div class="wrapper">
-            <a class="site-title" href="{{ "/" | relative_url }}">{{ site.title }}</a>
-            <nav class="site-nav">
-                <a class="page-link" href="{{ "/" | relative_url }}">Home</a>
-                <a class="page-link" href="{{ "/about" | relative_url }}">About</a>
-                <!-- Add more links here -->
-            </nav>
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+        <div class="profile-section">
+            <!-- Replace src with your actual photo path, e.g., /assets/profile.jpg -->
+            <img src="https://github.com/identicons/shb2908.png" alt="Profile" class="profile-photo">
+            <a href="{{ "/" | relative_url }}" class="site-title">{{ site.title }}</a>
+            <p class="site-bio">Exploring science, code, and uncertainty.</p>
         </div>
-    </header>
 
-    <!-- Main Content -->
-    <main class="page-content">
-        <div class="wrapper">
+        <nav class="nav-links">
+            <a href="{{ "/" | relative_url }}" class="nav-item">
+                <i class="fas fa-home"></i> Home
+            </a>
+            <a href="{{ "/about" | relative_url }}" class="nav-item">
+                <i class="fas fa-user"></i> About
+            </a>
+            <a href="{{ "/research" | relative_url }}" class="nav-item">
+                <i class="fas fa-flask"></i> Research
+            </a>
+            <a href="{{ "/blog" | relative_url }}" class="nav-item">
+                <i class="fas fa-pen-nib"></i> Blog
+            </a>
+        </nav>
+
+        <div class="social-links">
+            <a href="https://github.com/shb2908" class="social-icon" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://twitter.com" class="social-icon" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="mailto:your-email@example.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT RIGHT -->
+    <div class="main-wrapper">
+        <main class="page-content">
             {{ content }}
-        </div>
-    </main>
+        </main>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; {{ "now" | date: "%Y" }} {{ site.title }}.</p>
-    </footer>
+        <footer style="margin-top: 50px; font-size: 0.8rem; color: #888; border-top: 1px solid #eee; padding-top: 20px;">
+            <p>&copy; {{ "now" | date: "%Y" }} {{ site.title }}.</p>
+        </footer>
+    </div>
+
+    <!-- Gamification Stats (Floating) -->
+    <div class="player-stats">
+        <span class="stat-label">LVL</span>
+        <span class="stat-value" id="level-display">1</span>
+        <span style="color:#ddd">|</span>
+        <span class="stat-label">XP</span>
+        <span class="stat-value" id="xp-display">0</span>
+    </div>
 
     <script src="{{ "/assets/js/gamify.js" | relative_url }}"></script>
 </body>
