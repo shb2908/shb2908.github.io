@@ -1,0 +1,13 @@
+# Secrets
+.env
+.env.local
+
+# Mac System Files
+.DS_Store
+
+# Jekyll Builds
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
