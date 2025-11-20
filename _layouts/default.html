@@ -4,58 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
-    <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
     <link rel="stylesheet" href="{{ "/assets/css/gamify.css" | relative_url }}">
-    <!-- Add Google Font for Gaming Vibe -->
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Gamification UI -->
+    <!-- Minimalist XP Bar -->
     <div id="xp-container"><div id="xp-bar"></div></div>
     
+    <!-- Minimalist Stats -->
     <div class="player-stats">
-        <div>
+        <div class="stat-item">
             <span class="stat-label">LVL</span>
             <span class="stat-value" id="level-display">1</span>
         </div>
-        <div>
+        <div class="stat-item">
             <span class="stat-label">XP</span>
-            <span class="stat-value" id="xp-display">0 / 100</span>
+            <span class="stat-value" id="xp-display">0</span>
         </div>
     </div>
 
     <div id="levelup-toast" class="levelup-toast">
-        <div class="levelup-text">LEVEL UP!</div>
-        <p>You are growing stronger...</p>
+        <div class="levelup-text">Level Up! You are now Level <span id="new-level">2</span></div>
     </div>
 
     <!-- Header -->
     <header class="site-header">
         <div class="wrapper">
-            <div class="aura-container">
-                <a class="site-title aura-text shake-hover" href="{{ "/" | relative_url }}">{{ site.title }}</a>
-            </div>
+            <a class="site-title" href="{{ "/" | relative_url }}">{{ site.title }}</a>
             <nav class="site-nav">
-                <a class="page-link shake-hover" href="{{ "/" | relative_url }}">Home</a>
-                <a class="page-link shake-hover" href="{{ "/blog" | relative_url }}">Blog</a>
+                <a class="page-link" href="{{ "/" | relative_url }}">Home</a>
+                <a class="page-link" href="{{ "/about" | relative_url }}">About</a>
+                <!-- Add more links here -->
             </nav>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="page-content" aria-label="Content">
+    <main class="page-content">
         <div class="wrapper">
             {{ content }}
         </div>
     </main>
 
     <!-- Footer -->
-    <footer style="margin-top: 4rem; padding: 2rem 0; text-align: center; color: #666; border-top: 1px solid #eee;">
-        <p>&copy; {{ "now" | date: "%Y" }} {{ site.title }}. Level up by reading more!</p>
+    <footer>
+        <p>&copy; {{ "now" | date: "%Y" }} {{ site.title }}.</p>
     </footer>
 
     <script src="{{ "/assets/js/gamify.js" | relative_url }}"></script>
 </body>
 </html>
-
