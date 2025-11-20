@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
     <link rel="stylesheet" href="{{ "/assets/css/gamify.css" | relative_url }}">
+    <link rel="stylesheet" href="{{ "/assets/css/terminal.css" | relative_url }}">
     <!-- Font Awesome for Social Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -34,6 +35,9 @@
             </a>
             <a href="{{ "/blog" | relative_url }}" class="nav-item">
                 <i class="fas fa-pen-nib"></i> Blog
+            </a>
+            <a href="#" class="nav-item" onclick="openTerminal(); return false;">
+                <i class="fas fa-terminal"></i> Terminal
             </a>
         </nav>
 
@@ -83,6 +87,52 @@
     <!-- Gamification Stats (Floating) -->
     <!-- REMOVED per request -->
 
+    <!-- TERMINAL OVERLAY -->
+    <div id="terminal-overlay">
+        <div id="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-controls">
+                    <div class="control-dot close-dot"></div>
+                    <div class="control-dot minimize-dot"></div>
+                    <div class="control-dot expand-dot"></div>
+                </div>
+                <div class="terminal-title">visitor@soham-blog: ~</div>
+                <div></div> <!-- Spacer -->
+            </div>
+            <div id="terminal-body">
+                <div class="output">
+Welcome to Soham's Blog Terminal v1.0.0
+Type 'help' for a list of available commands.
+                </div>
+                <div id="terminal-output"></div>
+                <div class="command-line">
+                    <span class="prompt-user">visitor@soham-blog:~$</span>
+                    <input type="text" id="terminal-input" autocomplete="off" spellcheck="false" autofocus>
+                    <div class="cursor"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Inject Jekyll data for the terminal
+        window.siteData = {
+            title: "{{ site.title }}",
+            twitter: "{{ site.social.twitter }}",
+            github: "{{ site.social.github }}",
+            linkedin: "{{ site.social.linkedin }}",
+            posts: [
+                {% for post in site.posts limit:5 %}
+                {
+                    title: "{{ post.title | escape }}",
+                    url: "{{ post.url | relative_url }}",
+                    date: "{{ post.date | date: '%Y-%m-%d' }}"
+                }{% unless forloop.last %},{% endunless %}
+                {% endfor %}
+            ]
+        };
+    </script>
     <script src="{{ "/assets/js/gamify.js" | relative_url }}"></script>
+    <script src="{{ "/assets/js/terminal.js" | relative_url }}"></script>
 </body>
 </html>

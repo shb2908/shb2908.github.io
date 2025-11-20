@@ -1,0 +1,128 @@
+/* Terminal UI Overlay */
+#terminal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+#terminal-window {
+    width: 80%;
+    max-width: 900px;
+    height: 80vh;
+    background: #1e1e1e;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid #333;
+    font-family: 'Fira Code', 'Courier New', monospace;
+}
+
+/* Terminal Header */
+.terminal-header {
+    background: #2d2d2d;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333;
+}
+
+.terminal-title {
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+.terminal-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.control-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.close-dot { background: #ff5f56; }
+.minimize-dot { background: #ffbd2e; }
+.expand-dot { background: #27c93f; }
+
+/* Terminal Body */
+#terminal-body {
+    flex: 1;
+    padding: 20px;
+    color: #33ff00; /* Classic Terminal Green */
+    overflow-y: auto;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.command-line {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.prompt {
+    color: #ffbd2e; /* Yellow prompt path */
+    margin-right: 10px;
+}
+
+.prompt-user {
+    color: #27c93f;
+    font-weight: bold;
+}
+
+.cursor {
+    width: 10px;
+    height: 18px;
+    background: #33ff00;
+    animation: blink 1s infinite;
+    margin-left: 2px;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+#terminal-input {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-family: inherit;
+    font-size: inherit;
+    flex: 1;
+    outline: none;
+}
+
+/* Output Styling */
+.output {
+    margin-bottom: 10px;
+    color: #e0e0e0;
+    white-space: pre-wrap;
+}
+
+.output a {
+    color: #57c7ff;
+    text-decoration: none;
+}
+
+.output a:hover {
+    text-decoration: underline;
+}
+
+.error { color: #ff5f56; }
+.success { color: #27c93f; }
+
