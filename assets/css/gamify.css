@@ -130,10 +130,14 @@ body {
     flex: 1;
     padding: 60px 80px;
     max-width: 1000px; /* Content limit */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .page-content {
     max-width: 800px;
+    flex: 1; /* Pushes footer to bottom */
 }
 
 /* --- GAMIFICATION ELEMENTS (Subtle) --- */
