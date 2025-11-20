@@ -9,3 +9,10 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
 
+# Social Links (Leave empty to hide icon)
+social:
+  twitter: "https://x.com/yourusername"
+  linkedin: "https://linkedin.com/in/yourusername"
+  bluesky: "https://bsky.app/profile/yourusername"
+  github: "https://github.com/shb2908"
+  cloud: "" # Add your cloud/storage link here

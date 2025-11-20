@@ -38,18 +38,35 @@
         </nav>
 
         <div class="social-links">
-            <a href="https://x.com/yourusername" class="social-icon" target="_blank" title="X (Twitter)">
+            {% if site.social.twitter %}
+            <a href="{{ site.social.twitter }}" class="social-icon" target="_blank" title="X (Twitter)">
                 <i class="fa-brands fa-x-twitter"></i>
             </a>
-            <a href="https://linkedin.com/in/yourusername" class="social-icon" target="_blank" title="LinkedIn">
+            {% endif %}
+            
+            {% if site.social.linkedin %}
+            <a href="{{ site.social.linkedin }}" class="social-icon" target="_blank" title="LinkedIn">
                 <i class="fa-brands fa-linkedin"></i>
             </a>
-            <a href="https://bsky.app/profile/yourusername" class="social-icon" target="_blank" title="Bluesky">
+            {% endif %}
+            
+            {% if site.social.bluesky %}
+            <a href="{{ site.social.bluesky }}" class="social-icon" target="_blank" title="Bluesky">
                 <i class="fa-solid fa-cloud"></i>
             </a>
-            <a href="https://github.com/shb2908" class="social-icon" target="_blank" title="GitHub">
+            {% endif %}
+            
+            {% if site.social.github %}
+            <a href="{{ site.social.github }}" class="social-icon" target="_blank" title="GitHub">
                 <i class="fa-brands fa-github"></i>
             </a>
+            {% endif %}
+            
+            {% if site.social.cloud %}
+            <a href="{{ site.social.cloud }}" class="social-icon" target="_blank" title="Cloud/Storage">
+                <i class="fas fa-hdd"></i>
+            </a>
+            {% endif %}
         </div>
     </aside>
 
