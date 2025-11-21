@@ -42,34 +42,21 @@
         </nav>
 
         <div class="social-links">
-            <!-- Force GitHub to show for debugging, use others if defined -->
             <a href="{{ site.social.github | default: 'https://github.com/shb2908' }}" class="social-icon" target="_blank" title="GitHub">
                 <i class="fa-brands fa-github"></i>
             </a>
-
-            {% if site.social.twitter %}
-            <a href="{{ site.social.twitter }}" class="social-icon" target="_blank" title="X (Twitter)">
+        
+            <a href="{{ site.social.twitter | default: '#' }}" class="social-icon" target="_blank" title="X (Twitter)">
                 <i class="fa-brands fa-x-twitter"></i>
             </a>
-            {% endif %}
-            
-            {% if site.social.linkedin %}
-            <a href="{{ site.social.linkedin }}" class="social-icon" target="_blank" title="LinkedIn">
+        
+            <a href="{{ site.social.linkedin | default: '#' }}" class="social-icon" target="_blank" title="LinkedIn">
                 <i class="fa-brands fa-linkedin"></i>
             </a>
-            {% endif %}
-            
-            {% if site.social.bluesky %}
-            <a href="{{ site.social.bluesky }}" class="social-icon" target="_blank" title="Bluesky">
-                <i class="fa-solid fa-cloud"></i>
+        
+            <a href="mailto:{{ site.email | default: 'your-email@example.com' }}" class="social-icon" title="Email">
+                <i class="fas fa-envelope"></i>
             </a>
-            {% endif %}
-            
-            {% if site.social.cloud %}
-            <a href="{{ site.social.cloud }}" class="social-icon" target="_blank" title="Cloud/Storage">
-                <i class="fas fa-hdd"></i>
-            </a>
-            {% endif %}
         </div>
     </aside>
 
