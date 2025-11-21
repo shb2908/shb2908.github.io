@@ -107,31 +107,31 @@ body {
 .social-links {
     margin-top: auto; /* Push to bottom */
     display: flex;
-    gap: 20px;
-    justify-content: center;
-    padding-top: 25px;
+    gap: 15px; /* Reduced gap to keep them closer */
+    padding-top: 30px;
     border-top: 1px solid var(--border-color);
     flex-wrap: wrap;
+    justify-content: flex-start; /* Align left like the image, or center if preferred */
 }
 
 .social-icon {
-    color: #666;
+    color: #999; /* Muted gray */
     text-decoration: none;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: rgba(0,0,0,0.03);
+    width: auto; /* Allow natural width */
+    height: auto;
+    background: transparent; /* Remove circle background */
+    border-radius: 0;
 }
 
 .social-icon:hover {
-    color: var(--accent-color);
-    background: rgba(0,0,0,0.08);
-    transform: translateY(-2px);
+    color: #555; /* Darker gray on hover */
+    background: transparent;
+    transform: none; /* Remove lift effect for a simpler feel */
 }
 
 /* --- MAIN CONTENT AREA --- */
