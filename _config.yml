@@ -9,6 +9,9 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
 
+# Include custom source folder
+include: ["_src"]
+
 # Social Links (Leave empty to hide icon)
 social:
   twitter: "https://x.com/yourusername"
