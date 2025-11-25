@@ -12,6 +12,15 @@
 }
 
 /* Dark Mode */
+body.dark-mode {
+    --bg-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --sidebar-bg: #222;
+    --border-color: #333;
+    --card-bg: #2a2a2a;
+    --xp-color: #fff;
+}
+
 @media (prefers-color-scheme: dark) {
     :root {
         --bg-color: #1a1a1a;
@@ -212,3 +221,70 @@ a:hover { text-decoration: underline; }
 .post-meta { font-size: 0.85rem; color: #888; margin-bottom: 5px; display: block; }
 .tags { display: inline-flex; gap: 8px; margin-left: 10px; }
 .tag { background: var(--border-color); padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; color: #666; }
+
+/* Theme Toggle Styles */
+.theme-toggle {
+    position: fixed;
+    bottom: 80px;
+    left: 30px;
+    width: 40px;
+    height: 40px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 101;
+}
+
+.theme-toggle:hover {
+    background: var(--border-color);
+}
+
+.theme-toggle svg {
+    fill: var(--text-color);
+}
+
+.theme-menu {
+    position: fixed;
+    bottom: 130px;
+    left: 30px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 8px 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 102;
+}
+
+.theme-option {
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+    color: var(--text-color);
+}
+
+.theme-option:hover {
+    background: var(--border-color);
+}
+
+.theme-option.active {
+    background: var(--accent-color);
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .theme-toggle {
+        left: 10px;
+        bottom: 60px;
+    }
+    
+    .theme-menu {
+        left: 10px;
+        bottom: 110px;
+    }
+}

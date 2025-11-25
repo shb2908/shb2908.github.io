@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include meta.html %}
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
     <link rel="stylesheet" href="{{ "/assets/css/gamify.css" | relative_url }}">
     <link rel="stylesheet" href="{{ "/assets/css/terminal.css" | relative_url }}">
@@ -58,6 +57,9 @@
                 <i class="fas fa-envelope"></i>
             </a>
         </div>
+
+        <!-- Theme Toggle -->
+        {% include theme_toggle.html %}
     </aside>
 
     <!-- MAIN CONTENT RIGHT -->
