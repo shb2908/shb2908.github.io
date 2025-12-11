@@ -1,38 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     {% include meta.html %}
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
-    <link rel="stylesheet" href="{{ "/assets/css/gamify.css" | relative_url }}">
-    <link rel="stylesheet" href="{{ "/assets/css/terminal.css" | relative_url }}">
+    <link rel="stylesheet" href="{{ " /assets/css/gamify.css" | relative_url }}">
+    <link rel="stylesheet" href="{{ " /assets/css/terminal.css" | relative_url }}">
     <!-- Font Awesome for Social Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
 
     <!-- XP Bar (Top of Main Content) -->
-    <div id="xp-container"><div id="xp-bar"></div></div>
+    <div id="xp-container">
+        <div id="xp-bar"></div>
+    </div>
 
     <!-- LEFT SIDEBAR -->
     <aside class="sidebar">
         <div class="profile-section">
             <!-- Replace src with your actual photo path -->
-            <img src="{{ "/files/myprofileblog1.jpg" | relative_url }}" alt="Profile" class="profile-photo">
-            <a href="{{ "/" | relative_url }}" class="site-title">{{ site.title }}</a>
+            <img src="{{ " /files/myprofileblog1.jpg" | relative_url }}" alt="Profile" class="profile-photo">
+            <a href="{{ " /" | relative_url }}" class="site-title">{{ site.title }}</a>
             <p class="site-bio">Exploring science, code, and uncertainty.</p>
         </div>
 
         <nav class="nav-links">
-            <a href="{{ "/" | relative_url }}" class="nav-item">
+            <a href="{{ " /" | relative_url }}" class="nav-item">
                 <i class="fas fa-home"></i> Home
             </a>
-            <a href="{{ "/about" | relative_url }}" class="nav-item">
+            <a href="{{ " /about" | relative_url }}" class="nav-item">
                 <i class="fas fa-user"></i> About
             </a>
-            <a href="{{ "/research" | relative_url }}" class="nav-item">
+            <a href="{{ " /research" | relative_url }}" class="nav-item">
                 <i class="fas fa-flask"></i> Research
             </a>
-            <a href="{{ "/blog" | relative_url }}" class="nav-item">
+            <a href="{{ " /blog" | relative_url }}" class="nav-item">
                 <i class="fas fa-pen-nib"></i> Blog
             </a>
             <a href="#" class="nav-item" onclick="openTerminal(); return false;">
@@ -41,18 +45,19 @@
         </nav>
 
         <div class="social-links">
-            <a href="{{ site.social.github | default: 'https://github.com/shb2908' }}" class="social-icon" target="_blank" title="GitHub">
+            <a href="{{ site.social.github | default: 'https://github.com/shb2908' }}" class="social-icon"
+                target="_blank" title="GitHub">
                 <i class="fa-brands fa-github"></i>
             </a>
-        
+
             <a href="{{ site.social.twitter | default: '#' }}" class="social-icon" target="_blank" title="X (Twitter)">
                 <i class="fa-brands fa-x-twitter"></i>
             </a>
-        
+
             <a href="{{ site.social.linkedin | default: '#' }}" class="social-icon" target="_blank" title="LinkedIn">
                 <i class="fa-brands fa-linkedin"></i>
             </a>
-        
+
             <a href="mailto:{{ site.email | default: 'your-email@example.com' }}" class="social-icon" title="Email">
                 <i class="fas fa-envelope"></i>
             </a>
@@ -64,11 +69,19 @@
 
     <!-- MAIN CONTENT RIGHT -->
     <div class="main-wrapper">
+        <div class="dino-eating-container">
+            <div class="text-layer">I love reading papers</div>
+            <div class="dino-actor">
+                <div class="dino-eraser"></div>
+                <div class="dino-sprite">🦖</div>
+            </div>
+        </div>
         <main class="page-content">
             {{ content }}
         </main>
 
-        <footer style="margin-top: 50px; font-size: 0.8rem; color: #888; border-top: 1px solid #eee; padding-top: 20px;">
+        <footer
+            style="margin-top: 50px; font-size: 0.8rem; color: #888; border-top: 1px solid #eee; padding-top: 20px;">
             <p>&copy; {{ "now" | date: "%Y" }} {{ site.title }}.</p>
         </footer>
     </div>
@@ -90,8 +103,8 @@
             </div>
             <div id="terminal-body">
                 <div class="output">
-Welcome to Soham's Blog Terminal v1.0.0
-Type 'help' for a list of available commands.
+                    Welcome to Soham's Blog Terminal v1.0.0
+                    Type 'help' for a list of available commands.
                 </div>
                 <div id="terminal-output"></div>
                 <div class="command-line">
@@ -111,17 +124,18 @@ Type 'help' for a list of available commands.
             github: "{{ site.social.github }}",
             linkedin: "{{ site.social.linkedin }}",
             posts: [
-                {% for post in site.posts limit:5 %}
-                {
-                    title: "{{ post.title | escape }}",
-                    url: "{{ post.url | relative_url }}",
+                {% for post in site.posts limit: 5 %}
+        {
+            title: "{{ post.title | escape }}",
+                url: "{{ post.url | relative_url }}",
                     date: "{{ post.date | date: '%Y-%m-%d' }}"
-                }{% unless forloop.last %},{% endunless %}
-                {% endfor %}
+        } {% unless forloop.last %}, {% endunless %}
+        {% endfor %}
             ]
         };
     </script>
-    <script src="{{ "/assets/js/gamify.js" | relative_url }}"></script>
-    <script src="{{ "/assets/js/terminal.js" | relative_url }}"></script>
+    <script src="{{ " /assets/js/gamify.js" | relative_url }}"></script>
+    <script src="{{ " /assets/js/terminal.js" | relative_url }}"></script>
 </body>
+
 </html>

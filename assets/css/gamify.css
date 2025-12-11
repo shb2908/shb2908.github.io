@@ -8,7 +8,7 @@
     --accent-color: #0066cc;
     --xp-color: #333;
     --card-bg: #fff;
-    --card-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 /* Dark Mode */
@@ -66,7 +66,8 @@ body {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background-color: #ddd; /* Placeholder color */
+    background-color: #ddd;
+    /* Placeholder color */
     margin: 0 auto 15px;
     object-fit: cover;
     border: 2px solid var(--border-color);
@@ -109,38 +110,47 @@ body {
 
 .nav-item:hover {
     color: var(--accent-color);
-    padding-left: 5px; /* Subtle slide effect */
+    padding-left: 5px;
+    /* Subtle slide effect */
 }
 
 /* Social Links */
 .social-links {
-    margin-top: auto; /* Push to bottom */
+    margin-top: auto;
+    /* Push to bottom */
     display: flex;
-    gap: 15px; /* Reduced gap to keep them closer */
+    gap: 15px;
+    /* Reduced gap to keep them closer */
     padding-top: 30px;
     border-top: 1px solid var(--border-color);
     flex-wrap: wrap;
-    justify-content: flex-start; /* Align left like the image, or center if preferred */
+    justify-content: flex-start;
+    /* Align left like the image, or center if preferred */
 }
 
 .social-icon {
-    color: #999; /* Muted gray */
+    color: #999;
+    /* Muted gray */
     text-decoration: none;
     font-size: 1.3rem;
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: auto; /* Allow natural width */
+    width: auto;
+    /* Allow natural width */
     height: auto;
-    background: transparent; /* Remove circle background */
+    background: transparent;
+    /* Remove circle background */
     border-radius: 0;
 }
 
 .social-icon:hover {
-    color: #555; /* Darker gray on hover */
+    color: #555;
+    /* Darker gray on hover */
     background: transparent;
-    transform: none; /* Remove lift effect for a simpler feel */
+    transform: none;
+    /* Remove lift effect for a simpler feel */
 }
 
 /* --- MAIN CONTENT AREA --- */
@@ -148,7 +158,8 @@ body {
     margin-left: var(--sidebar-width);
     flex: 1;
     padding: 60px 80px;
-    max-width: 1000px; /* Content limit */
+    max-width: 1000px;
+    /* Content limit */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -156,14 +167,16 @@ body {
 
 .page-content {
     max-width: 800px;
-    flex: 1; /* Pushes footer to bottom */
+    flex: 1;
+    /* Pushes footer to bottom */
 }
 
 /* --- GAMIFICATION ELEMENTS (Subtle) --- */
 #xp-container {
     position: fixed;
     top: 0;
-    left: var(--sidebar-width); /* Start after sidebar */
+    left: var(--sidebar-width);
+    /* Start after sidebar */
     right: 0;
     height: 3px;
     z-index: 90;
@@ -197,9 +210,10 @@ body {
     }
 
     #xp-container {
-        left: 0; /* Full width on mobile */
+        left: 0;
+        /* Full width on mobile */
     }
-    
+
     .social-links {
         margin-top: 20px;
         gap: 15px;
@@ -207,20 +221,76 @@ body {
 }
 
 /* --- TYPOGRAPHY & ELEMENTS --- */
-h1, h2, h3 { color: var(--text-color); font-weight: 700; }
-p { line-height: 1.7; margin-bottom: 1.5rem; }
-a { color: var(--accent-color); text-decoration: none; }
-a:hover { text-decoration: underline; }
+h1,
+h2,
+h3 {
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+p {
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
 
 /* Post List Styles */
-.post-list { list-style: none; padding: 0; }
-.post-list li { margin-bottom: 40px; padding-bottom: 30px; border-bottom: 1px solid var(--border-color); }
-.post-list li:last-child { border-bottom: none; }
-.post-link { font-size: 1.4rem; font-weight: 700; color: var(--text-color); display: block; margin-bottom: 10px; }
-.post-link:hover { color: var(--accent-color); text-decoration: none; }
-.post-meta { font-size: 0.85rem; color: #888; margin-bottom: 5px; display: block; }
-.tags { display: inline-flex; gap: 8px; margin-left: 10px; }
-.tag { background: var(--border-color); padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; color: #666; }
+.post-list {
+    list-style: none;
+    padding: 0;
+}
+
+.post-list li {
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.post-list li:last-child {
+    border-bottom: none;
+}
+
+.post-link {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-color);
+    display: block;
+    margin-bottom: 10px;
+}
+
+.post-link:hover {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.post-meta {
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.tags {
+    display: inline-flex;
+    gap: 8px;
+    margin-left: 10px;
+}
+
+.tag {
+    background: var(--border-color);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    color: #666;
+}
 
 /* Theme Toggle Styles */
 .theme-toggle {
@@ -256,7 +326,7 @@ a:hover { text-decoration: underline; }
     border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 8px 0;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     z-index: 102;
 }
 
@@ -282,9 +352,110 @@ a:hover { text-decoration: underline; }
         left: 10px;
         bottom: 60px;
     }
-    
+
     .theme-menu {
         left: 10px;
         bottom: 110px;
+    }
+}
+
+
+/* --- DINO EATING ANIMATION --- */
+.dino-eating-container {
+    width: 100%;
+    height: 60px;
+    /* Specific height for the scene */
+    overflow: hidden;
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 20px;
+    position: relative;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    /* Initial padding for text */
+}
+
+.text-layer {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-color);
+    white-space: nowrap;
+    z-index: 1;
+    /* Below the dino actor */
+}
+
+.dino-actor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    /* Start completely right (off-screen) + extra buffer, move left */
+    /* Implementation: We actually want the dino to start left of the text? 
+       Wait, "eating" usually means moving Left -> Right or Right -> Left?
+       If text is "I love reading papers", reading left-to-right.
+       The dino should probably walk Left -> Right over the text? 
+       Or maybe Right -> Left (pacman style)?
+       Let's do classic Left -> Right "chasing" or Right -> Left "devouring".
+       The user said "given in google blogs" which might imply pacman/eating dots?
+       Let's assume Right -> Left is more dramatic for "erasing" text if the dino faces left.
+       The emoji 🦖 faces LEFT by default. So it should walk Right -> Left.
+    */
+    display: flex;
+    align-items: center;
+    z-index: 10;
+    animation: eat-walking 8s linear infinite;
+}
+
+.dino-eraser {
+    /* This block trails BEHIND the dino to hide text */
+    /* Since dino faces Left (🦖), "behind" is to the RIGHT. */
+    width: 2000px;
+    /* Super wide to cover everything behind */
+    height: 100%;
+    background-color: var(--card-bg);
+    margin-left: -5px;
+    /* Slight overlap to prevent gaps */
+}
+
+.dino-sprite {
+    font-size: 2.5rem;
+    animation: dino-bob 0.3s infinite alternate;
+    /* Since we want dino to lead, and eraser to follow right: 
+       DOM order: eraser, sprite.
+       Flex-direction: row-reverse? No.
+       If moving Right -> Left:
+       [ <--- Dino ] [ Eraser ]
+       So visually: Dino is Left, Eraser is Right.
+       DOM: Sprite then Eraser? Or Eraser then Sprite?
+       Flexbox defaults to row.
+       We want: [Sprite][Eraser]
+       So swap order in HTML or use order css.
+    */
+    order: -1;
+    /* Put sprite first visually */
+    filter: drop-shadow(2px 2px 0 rgba(0, 0, 0, 0.1));
+}
+
+@keyframes eat-walking {
+    0% {
+        left: 100%;
+        /* Start off-screen right */
+    }
+
+    100% {
+        left: -500px;
+        /* Move way off-screen left */
+    }
+}
+
+@keyframes dino-bob {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-3px);
     }
 }
