@@ -109,6 +109,18 @@
         </div>
     </div>
 
+    {% capture posts_data %}
+    [
+    {% for post in site.posts limit: 5 %}
+    {
+    "title": {{ post.title | jsonify }},
+    "url": {{ post.url | relative_url | jsonify }},
+    "date": {{ post.date | date: '%Y-%m-%d' | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+    ]
+    {% endcapture %}
+
     <script>
         // Inject Jekyll data for the terminal
         window.siteData = {
@@ -116,15 +128,7 @@
             twitter: "{{ site.social.twitter }}",
             github: "{{ site.social.github }}",
             linkedin: "{{ site.social.linkedin }}",
-            posts: [
-                {% for post in site.posts limit: 5 %}
-        {
-            title: "{{ post.title | escape }}",
-                url: "{{ post.url | relative_url }}",
-                    date: "{{ post.date | date: '%Y-%m-%d' }}"
-        } {% unless forloop.last %}, {% endunless %}
-        {% endfor %}
-            ]
+            posts: JSON.parse(decodeURIComponent("{{ posts_data | jsonify | uri_escape }}"))
         };
     </script>
     <script src="{{ " /assets/js/gamify.js" | relative_url }}"></script>
