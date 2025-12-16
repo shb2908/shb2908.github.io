@@ -145,6 +145,19 @@ body {
     opacity: 0.8;
 }
 
+.social-icon i {
+    font-size: inherit;
+    line-height: 1;
+    display: inline-block;
+}
+
+/* Make Twitter/X icon white */
+.social-icon .fa-x-twitter,
+.social-icon .fa-twitter {
+    font-size: 1.5rem;
+    color: #fff !important;
+}
+
 .social-icon:hover {
     color: var(--accent-color); /* Use accent color on hover */
     opacity: 1;

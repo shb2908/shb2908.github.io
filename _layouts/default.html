@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ "/assets/css/gamify.css" | relative_url }}">
     <link rel="stylesheet" href="{{ "/assets/css/terminal.css" | relative_url }}">
     <!-- Font Awesome for Social Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
@@ -50,15 +50,21 @@
                 <i class="fa-brands fa-github"></i>
             </a>
 
-            <a href="{{ site.social.twitter | default: '#' }}" class="social-icon" target="_blank" title="X (Twitter)">
+            <a href="{{ site.social.twitter | default: 'https://x.com/Besoham2003' }}" class="social-icon" target="_blank" title="X (Twitter)">
                 <i class="fa-brands fa-x-twitter"></i>
             </a>
 
-            <a href="{{ site.social.linkedin | default: '#' }}" class="social-icon" target="_blank" title="LinkedIn">
+            <a href="{{ site.social.linkedin | default: 'https://www.linkedin.com/in/soham-bose-2a6a6a250/' }}" class="social-icon" target="_blank" title="LinkedIn">
                 <i class="fa-brands fa-linkedin"></i>
             </a>
 
-            <a href="mailto:{{ site.email | default: 'your-email@example.com' }}" class="social-icon" title="Email">
+            {% if site.social.scholar %}
+            <a href="{{ site.social.scholar }}" class="social-icon" target="_blank" title="Google Scholar">
+                <i class="fas fa-graduation-cap"></i>
+            </a>
+            {% endif %}
+
+            <a href="mailto:{{ site.email | default: 'sohamshb9119@gmail.com' }}" class="social-icon" title="Email">
                 <i class="fas fa-envelope"></i>
             </a>
         </div>
