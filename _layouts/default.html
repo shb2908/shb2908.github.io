@@ -4,8 +4,8 @@
 <head>
     {% include meta.html %}
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
-    <link rel="stylesheet" href="{{ " /assets/css/gamify.css" | relative_url }}">
-    <link rel="stylesheet" href="{{ " /assets/css/terminal.css" | relative_url }}">
+    <link rel="stylesheet" href="{{ "/assets/css/gamify.css" | relative_url }}">
+    <link rel="stylesheet" href="{{ "/assets/css/terminal.css" | relative_url }}">
     <!-- Font Awesome for Social Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -21,22 +21,22 @@
     <aside class="sidebar">
         <div class="profile-section">
             <!-- Replace src with your actual photo path -->
-            <img src="{{ " /files/myprofileblog1.jpg" | relative_url }}" alt="Profile" class="profile-photo">
-            <a href="{{ " /" | relative_url }}" class="site-title">{{ site.title }}</a>
+            <img src="{{ "/files/myprofileblog1.jpg" | relative_url }}" alt="Profile" class="profile-photo">
+            <a href="{{ "/" | relative_url }}" class="site-title">{{ site.title }}</a>
             <p class="site-bio">Exploring science, code, and uncertainty.</p>
         </div>
 
         <nav class="nav-links">
-            <a href="{{ " /" | relative_url }}" class="nav-item">
+            <a href="{{ "/" | relative_url }}" class="nav-item">
                 <i class="fas fa-home"></i> Home
             </a>
-            <a href="{{ " /about" | relative_url }}" class="nav-item">
+            <a href="{{ "/about" | relative_url }}" class="nav-item">
                 <i class="fas fa-user"></i> About
             </a>
-            <a href="{{ " /research" | relative_url }}" class="nav-item">
+            <a href="{{ "/research" | relative_url }}" class="nav-item">
                 <i class="fas fa-flask"></i> Research
             </a>
-            <a href="{{ " /blog" | relative_url }}" class="nav-item">
+            <a href="{{ "/blog" | relative_url }}" class="nav-item">
                 <i class="fas fa-pen-nib"></i> Blog
             </a>
             <a href="#" class="nav-item" onclick="openTerminal(); return false;">
@@ -109,18 +109,6 @@
         </div>
     </div>
 
-    {% capture posts_data %}
-    [
-    {% for post in site.posts limit: 5 %}
-    {
-    "title": {{ post.title | jsonify }},
-    "url": {{ post.url | relative_url | jsonify }},
-    "date": {{ post.date | date: '%Y-%m-%d' | jsonify }}
-    }{% unless forloop.last %},{% endunless %}
-    {% endfor %}
-    ]
-    {% endcapture %}
-
     <script>
         // Inject Jekyll data for the terminal
         window.siteData = {
@@ -128,11 +116,19 @@
             twitter: "{{ site.social.twitter }}",
             github: "{{ site.social.github }}",
             linkedin: "{{ site.social.linkedin }}",
-            posts: JSON.parse(decodeURIComponent("{{ posts_data | jsonify | uri_escape }}"))
+            posts: [
+                {% for post in site.posts limit:5 %}
+                {
+                    title: {{ post.title | jsonify }},
+                    url: {{ post.url | relative_url | jsonify }},
+                    date: {{ post.date | date: '%Y-%m-%d' | jsonify }}
+                }{% unless forloop.last %},{% endunless %}
+                {% endfor %}
+            ]
         };
     </script>
-    <script src="{{ " /assets/js/gamify.js" | relative_url }}"></script>
-    <script src="{{ " /assets/js/terminal.js" | relative_url }}"></script>
+    <script src="{{ "/assets/js/gamify.js" | relative_url }}"></script>
+    <script src="{{ "/assets/js/terminal.js" | relative_url }}"></script>
 </body>
 
 </html>
