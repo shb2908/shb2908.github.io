@@ -4,6 +4,20 @@ title: Home
 ---
 
 <div class="home">
+  <section class="welcome-section" style="margin-bottom: 3rem;">
+    <h1 style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--text-color); display: flex; align-items: center; gap: 10px;">
+      <span style="font-size: 2rem;">👋</span> Welcome to My Blog
+    </h1>
+    <p style="font-size: 1.1rem; line-height: 1.8; color: #666; max-width: 700px; margin-bottom: 1rem;">
+      This is my corner of the website where I like to share my journey of walkthrough of my personal research, cool projects I have built and general thoughts on science, AI Research or something that captivates my mind in a broader subspace to question what remains to unquestioned.
+    </p>
+    <p style="font-size: 1rem; font-weight: 600; color: var(--accent-color);">
+      Thanks for Visiting!
+    </p>
+  </section>
+
+  <h2 style="font-size: 1.8rem; margin-bottom: 2rem; color: var(--text-color); border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem;">Recent Posts</h2>
+
   {% if site.posts.size > 0 %}
     <ul class="post-list">
       {% for post in site.posts %}
@@ -36,6 +50,6 @@ title: Home
       {% endfor %}
     </ul>
   {% else %}
-    <p>No posts yet.</p>
+    <p>No posts yet. Check back soon!</p>
   {% endif %}
 </div>
