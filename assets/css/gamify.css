@@ -55,7 +55,10 @@ body {
     flex-direction: column;
     gap: 30px;
     overflow-y: auto;
+    overflow-x: hidden;
     z-index: 100;
+    /* Ensure social links are always visible */
+    justify-content: flex-start;
 }
 
 .profile-section {
@@ -116,41 +119,36 @@ body {
 
 /* Social Links */
 .social-links {
-    margin-top: auto;
-    /* Push to bottom */
+    margin-top: auto; /* Push to bottom */
     display: flex;
-    gap: 15px;
-    /* Reduced gap to keep them closer */
-    padding-top: 30px;
+    gap: 20px;
+    padding: 25px 0;
     border-top: 1px solid var(--border-color);
     flex-wrap: wrap;
-    justify-content: flex-start;
-    /* Align left like the image, or center if preferred */
+    justify-content: center; /* Center the icons */
+    align-items: center;
+    min-height: 60px; /* Ensure minimum height */
 }
 
 .social-icon {
-    color: #999;
-    /* Muted gray */
+    color: #666; /* More visible gray */
     text-decoration: none;
-    font-size: 1.3rem;
+    font-size: 1.5rem; /* Larger icons */
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: auto;
-    /* Allow natural width */
-    height: auto;
+    width: 32px;
+    height: 32px;
     background: transparent;
-    /* Remove circle background */
     border-radius: 0;
+    opacity: 0.8;
 }
 
 .social-icon:hover {
-    color: #555;
-    /* Darker gray on hover */
-    background: transparent;
-    transform: none;
-    /* Remove lift effect for a simpler feel */
+    color: var(--accent-color); /* Use accent color on hover */
+    opacity: 1;
+    transform: scale(1.1); /* Slight scale on hover */
 }
 
 /* --- MAIN CONTENT AREA --- */
