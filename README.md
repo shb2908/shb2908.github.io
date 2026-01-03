@@ -1,2 +1,2 @@
 # My Portfolio
-My portfolio for sharing my ongoing contribution to the continuum of scientific discovery within a world defined by uncertainty.
+My portfolio for sharing my ongoing contribution to the continum of scientific discovery within a world defined by uncertainty.
