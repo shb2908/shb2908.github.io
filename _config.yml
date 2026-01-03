@@ -12,11 +12,14 @@ plugins:
 # Include custom source folder
 include: ["_src"]
 
-# Social Links (Leave empty to hide icon)
+# Contact Email 
+email: "sohamshb9119@gmail.com"  
+
+# Social Links
 social:
-  twitter: "https://x.com/yourusername"
-  linkedin: "https://linkedin.com/in/yourusername"
+  twitter: "https://x.com/Besoham2003"
+  linkedin: "https://www.linkedin.com/in/soham-bose-2a6a6a250/"
   bluesky: "https://bsky.app/profile/yourusername"
   github: "https://github.com/shb2908"
-  scholar: "" # Add your Google Scholar profile URL here (e.g., https://scholar.google.com/citations?user=YOUR_ID)
+  scholar: "https://scholar.google.com/citations?user=Hm5_iKMAAAAJ&hl=en" 
   cloud: "" # Add your cloud/storage link here

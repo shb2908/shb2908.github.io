@@ -5,51 +5,91 @@ title: Home
 
 <div class="home">
   <section class="welcome-section" style="margin-bottom: 3rem;">
-    <h1 style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--text-color); display: flex; align-items: center; gap: 10px;">
+    <h1
+      style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--text-color); display: flex; align-items: center; gap: 10px;">
       <span style="font-size: 2rem;">👋</span> Welcome to My Blog
     </h1>
     <p style="font-size: 1.1rem; line-height: 1.8; color: #666; max-width: 700px; margin-bottom: 1rem;">
-      This is my corner of the website where I like to share my journey of walkthrough of my personal research, cool projects I have built and general thoughts on science, AI Research or something that captivates my mind in a broader subspace to question what remains to unquestioned.
+      This is my corner of the website where I like to share my journey of walkthrough of my personal research, cool
+      projects I have built and general thoughts on science, AI Research or something that captivates my mind in a
+      broader subspace to question what remains to unquestioned.
     </p>
     <p style="font-size: 1rem; font-weight: 600; color: var(--accent-color);">
       Thanks for Visiting!
     </p>
   </section>
 
-  <h2 style="font-size: 1.8rem; margin-bottom: 2rem; color: var(--text-color); border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem;">Recent Posts</h2>
+  <h2
+    style="font-size: 1.8rem; margin-bottom: 2rem; color: var(--text-color); border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem;">
+    Recent Posts</h2>
 
   {% if site.posts.size > 0 %}
-    <ul class="post-list">
-      {% for post in site.posts %}
-        <li>
-            <div class="post-meta">
-                <span class="date">{{ post.date | date: "%Y-%m-%d" }}</span>
-                {% if post.categories.size > 0 %}
-                <div class="tags">
-                    {% for category in post.categories %}
-                    <span class="tag">{{ category }}</span>
-                    {% endfor %}
-                </div>
-                {% endif %}
-            </div>
-            
-            <a class="post-link" href="{{ post.url | relative_url }}">
-                {{ post.title | escape }}
-            </a>
-            
-            <p class="post-excerpt">
-                {% if post.description %}
-                    {{ post.description }}
-                {% else %}
-                    {{ post.excerpt | strip_html | truncatewords: 30 }}
-                {% endif %}
-            </p>
-            
-            <a href="{{ post.url | relative_url }}" style="font-size: 0.9rem; font-weight: 600;">Read More →</a>
-        </li>
-      {% endfor %}
-    </ul>
+  <ul class="post-list">
+    {% for post in site.posts %}
+    <li>
+      <div class="post-meta">
+        <span class="date">{{ post.date | date: "%Y-%m-%d" }}</span>
+        {% if post.categories.size > 0 %}
+        <div class="tags">
+          {% for category in post.categories %}
+          <span class="tag">{{ category }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      <a class="post-link" href="{{ post.url | relative_url }}">
+        {{ post.title | escape }}
+      </a>
+
+      <p class="post-excerpt">
+        {% if post.description %}
+        {{ post.description }}
+        {% else %}
+        {{ post.excerpt | strip_html | truncatewords: 30 }}
+        {% endif %}
+      </p>
+
+      <a href="{{ post.url | relative_url }}" style="font-size: 0.9rem; font-weight: 600;">Read More →</a>
+    </li>
+    {% endfor %}
+  </ul>
   {% else %}
-    <p>No posts yet. Check back soon!</p>
+  <p>No posts yet. Check back soon!</p>
   {% endif %}
+
+  <!-- Get In Touch Section -->
+  <section class="contact-section"
+    style="margin-top: 4rem; padding: 2.5rem; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
+    <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--text-color);">Get In Touch</h2>
+    <p style="color: #666; margin-bottom: 2rem; font-size: 1rem;">Drop me a message here :)</p>
+
+    <form id="contact-form" data-email="{{ site.email }}" style="display: flex; flex-direction: column; gap: 1.5rem;">
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <input type="text" id="contact-name" placeholder="Your Name" required
+          style="flex: 1; min-width: 200px; padding: 1rem 1.25rem; border: none; border-radius: 12px; background: #fff; font-size: 1rem; color: #333; box-shadow: inset 0 2px 4px rgba(0,0,0,0.04); transition: box-shadow 0.3s ease;"
+          onfocus="this.style.boxShadow='0 0 0 3px rgba(66, 153, 225, 0.3), inset 0 2px 4px rgba(0,0,0,0.04)'"
+          onblur="this.style.boxShadow='inset 0 2px 4px rgba(0,0,0,0.04)'">
+        <input type="email" id="contact-email" placeholder="Your Email" required
+          style="flex: 1; min-width: 200px; padding: 1rem 1.25rem; border: none; border-radius: 12px; background: #fff; font-size: 1rem; color: #333; box-shadow: inset 0 2px 4px rgba(0,0,0,0.04); transition: box-shadow 0.3s ease;"
+          onfocus="this.style.boxShadow='0 0 0 3px rgba(66, 153, 225, 0.3), inset 0 2px 4px rgba(0,0,0,0.04)'"
+          onblur="this.style.boxShadow='inset 0 2px 4px rgba(0,0,0,0.04)'">
+      </div>
+
+      <textarea id="contact-message" placeholder="Message" rows="6" required
+        style="width: 100%; padding: 1rem 1.25rem; border: none; border-radius: 12px; background: #fff; font-size: 1rem; color: #333; resize: vertical; box-shadow: inset 0 2px 4px rgba(0,0,0,0.04); transition: box-shadow 0.3s ease; font-family: inherit;"
+        onfocus="this.style.boxShadow='0 0 0 3px rgba(66, 153, 225, 0.3), inset 0 2px 4px rgba(0,0,0,0.04)'"
+        onblur="this.style.boxShadow='inset 0 2px 4px rgba(0,0,0,0.04)'"></textarea>
+
+      <button type="submit"
+        style="align-self: flex-start; padding: 0.875rem 2rem; background: transparent; color: #4a5568; border: 2px solid #a0aec0; border-radius: 12px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease;"
+        onmouseover="this.style.background='var(--accent-color)'; this.style.color='#fff'; this.style.borderColor='var(--accent-color)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.15)'"
+        onmouseout="this.style.background='transparent'; this.style.color='#4a5568'; this.style.borderColor='#a0aec0'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+        Send Message
+      </button>
+    </form>
+  </section>
+
+  <script src="{{ '/_src/Contact_form.js' | relative_url }}"></script>
+
 </div>
