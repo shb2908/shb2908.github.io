@@ -6,23 +6,12 @@
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
     <link rel="stylesheet" href="{{ " /assets/css/gamify.css" | relative_url }}">
     <link rel="stylesheet" href="{{ " /assets/css/terminal.css" | relative_url }}">
+    <link rel="stylesheet" href="{{ " /_layouts/deafult.css" | relative_url }}">
     <!-- Font Awesome for Social Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- MathJax for LaTeX Math Rendering -->
-    <script>
-        MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                processEscapes: true
-            },
-            options: {
-                enableSpeech: false,
-                enableBraille: false
-            }
-        };
-    </script>
+    <!-- MathJax and Site Data Configuration -->
+    <script src="{{ " /_layouts/deafult.js" | relative_url }}"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 
@@ -97,8 +86,7 @@
             {{ content }}
         </main>
 
-        <footer
-            style="margin-top: 50px; font-size: 0.8rem; color: #888; border-top: 1px solid #eee; padding-top: 20px;">
+        <footer class="site-footer">
             <p>&copy; {{ "now" | date: "%Y" }} {{ site.title }}.</p>
         </footer>
     </div>
@@ -133,24 +121,6 @@
         </div>
     </div>
 
-    <script>
-        // Inject Jekyll data for the terminal
-        window.siteData = {
-            title: "{{ site.title }}",
-            twitter: "{{ site.social.twitter }}",
-            github: "{{ site.social.github }}",
-            linkedin: "{{ site.social.linkedin }}",
-            posts: [
-                {% for post in site.posts limit: 5 %}
-        {
-            title: { { post.title | jsonify } },
-            url: { { post.url | relative_url | jsonify } },
-            date: { { post.date | date: '%Y-%m-%d' | jsonify } }
-        } {% unless forloop.last %}, {% endunless %}
-        {% endfor %}
-            ]
-        };
-    </script>
     <script src="{{ " /assets/js/gamify.js" | relative_url }}"></script>
     <script src="{{ " /assets/js/terminal.js" | relative_url }}"></script>
 </body>
