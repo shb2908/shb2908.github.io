@@ -1,0 +1,494 @@
+/* ============================================
+   PaperMod-Inspired Blog Styles
+   ============================================ */
+
+/* --- Blog Archive Page --- */
+.blog-archive {
+    max-width: 720px;
+}
+
+.blog-archive-header {
+    margin-bottom: 40px;
+}
+
+.blog-archive-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 8px;
+}
+
+.blog-archive-desc {
+    color: #888;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Post List - PaperMod Style */
+.papermod-post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.papermod-post-item {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.2s ease;
+}
+
+.papermod-post-item:last-child {
+    border-bottom: none;
+}
+
+.papermod-post-item:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+body.dark-mode .papermod-post-item:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.papermod-post-link {
+    text-decoration: none;
+    display: block;
+}
+
+.papermod-post-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0 0 8px 0;
+    transition: color 0.2s ease;
+}
+
+.papermod-post-link:hover .papermod-post-title {
+    color: var(--accent-color);
+}
+
+.papermod-post-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 8px;
+}
+
+.papermod-post-date {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.papermod-post-reading-time {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.papermod-post-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.papermod-tag {
+    background: var(--border-color);
+    color: #666;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    text-transform: lowercase;
+}
+
+body.dark-mode .papermod-tag {
+    color: #aaa;
+}
+
+.papermod-post-desc {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+body.dark-mode .papermod-post-desc {
+    color: #aaa;
+}
+
+/* --- Single Post Page - PaperMod Style --- */
+.papermod-post {
+    max-width: 720px;
+}
+
+.papermod-post-header {
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.papermod-post-header .papermod-post-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 16px;
+}
+
+.papermod-post-header .papermod-post-meta {
+    flex-wrap: wrap;
+}
+
+/* Post Content Styling */
+.papermod-content {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+.papermod-content h2,
+.papermod-content h3,
+.papermod-content h4 {
+    position: relative;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Header Anchors - PaperMod Signature */
+.papermod-content h2:hover .header-anchor,
+.papermod-content h3:hover .header-anchor,
+.papermod-content h4:hover .header-anchor {
+    opacity: 1;
+}
+
+.header-anchor {
+    color: var(--accent-color);
+    text-decoration: none;
+    margin-left: 8px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    font-weight: 400;
+}
+
+.header-anchor:hover {
+    text-decoration: none;
+}
+
+.papermod-content p {
+    margin-bottom: 1.5rem;
+}
+
+.papermod-content ul,
+.papermod-content ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.papermod-content li {
+    margin-bottom: 0.5rem;
+    line-height: 1.7;
+}
+
+.papermod-content blockquote {
+    border-left: 4px solid var(--accent-color);
+    margin: 1.5rem 0;
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    color: #666;
+    font-style: italic;
+}
+
+body.dark-mode .papermod-content blockquote {
+    color: #aaa;
+}
+
+.papermod-content code {
+    background: var(--border-color);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.9em;
+    font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+}
+
+.papermod-content pre {
+    background: #1a1a1a;
+    color: #e0e0e0;
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+
+.papermod-content pre code {
+    background: none;
+    padding: 0;
+    font-size: 0.9rem;
+}
+
+.papermod-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+}
+
+.papermod-content hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 2.5rem 0;
+}
+
+/* --- Post Footer - Prev/Next Navigation --- */
+.papermod-post-footer {
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid var(--border-color);
+}
+
+.post-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.post-nav-item {
+    flex: 1;
+    max-width: 48%;
+}
+
+.post-nav-item.prev {
+    text-align: left;
+}
+
+.post-nav-item.next {
+    text-align: right;
+    margin-left: auto;
+}
+
+.post-nav-label {
+    font-size: 0.8rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.post-nav-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    display: block;
+}
+
+.post-nav-title:hover {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+/* --- Back to Top Button --- */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 44px;
+    height: 44px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+.back-to-top svg {
+    width: 18px;
+    height: 18px;
+    fill: var(--text-color);
+    transition: fill 0.2s ease;
+}
+
+.back-to-top:hover svg {
+    fill: #fff;
+}
+
+/* --- Post Footer Links --- */
+.papermod-footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.papermod-footer-link {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.papermod-footer-link:hover {
+    color: var(--accent-color);
+}
+
+/* --- Separator --- */
+.papermod-separator {
+    color: #ccc;
+}
+
+/* --- Table of Contents (Optional) --- */
+.toc {
+    background: var(--sidebar-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px 25px;
+    margin-bottom: 30px;
+}
+
+.toc-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+}
+
+.toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toc-list li {
+    margin-bottom: 8px;
+}
+
+.toc-list a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+}
+
+.toc-list a:hover {
+    color: var(--accent-color);
+}
+
+/* --- Reading Progress Bar (Optional) --- */
+.reading-progress {
+    position: fixed;
+    top: 0;
+    left: var(--sidebar-width);
+    right: 0;
+    height: 3px;
+    background: transparent;
+    z-index: 99;
+}
+
+.reading-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-color), #4dabf7);
+    width: 0%;
+    transition: width 0.1s ease;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .papermod-post-header .papermod-post-title {
+        font-size: 1.6rem;
+    }
+
+    .post-nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .post-nav-item {
+        max-width: 100%;
+    }
+
+    .post-nav-item.next {
+        text-align: left;
+    }
+
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .reading-progress {
+        left: 0;
+    }
+
+    .papermod-content {
+        font-size: 1rem;
+    }
+}
+
+/* --- Blog Year Archive Group --- */
+.year-group {
+    margin-bottom: 40px;
+}
+
+.year-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent-color);
+    display: inline-block;
+}
+
+/* --- Share Icons --- */
+.share-icons {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.share-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.share-icon:hover {
+    background: var(--accent-color);
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.share-icon i {
+    font-size: 0.9rem;
+}

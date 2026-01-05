@@ -4,25 +4,65 @@ title: Blog
 permalink: /blog/
 ---
 
-# Blog Archive
+<link rel="stylesheet" href="{{ '/assets/css/papermod.css' | relative_url }}">
 
-Here you can find all my writings, thoughts, and updates.
+<div class="blog-archive">
+  <header class="blog-archive-header">
+    <h1 class="blog-archive-title">Blog</h1>
+    <p class="blog-archive-desc">
+      Thoughts on scientific discovery, AI research, and the continuous quest for knowledge.
+    </p>
+  </header>
 
-<ul class="post-list">
-  {% for post in site.posts %}
-    <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-        <h3>
-          <a class="post-link" href="{{ post.url | relative_url }}">
-            {{ post.title | escape }}
-          </a>
-        </h3>
-        {% if post.description %}
-          <p>{{ post.description }}</p>
-        {% else %}
-          <p>{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
-        {% endif %}
-    </li>
+  {% if site.posts.size > 0 %}
+  
+  {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+  
+  {% for year in posts_by_year %}
+  <div class="year-group">
+    <h2 class="year-title">{{ year.name }}</h2>
+    <ul class="papermod-post-list">
+      {% for post in year.items %}
+      <li class="papermod-post-item">
+        <a href="{{ post.url | relative_url }}" class="papermod-post-link">
+          <div class="papermod-post-meta">
+            <span class="papermod-post-date">
+              <i class="far fa-calendar"></i>
+              {{ post.date | date: "%b %d" }}
+            </span>
+            {% assign words = post.content | number_of_words %}
+            {% assign minutes = words | divided_by: 200 %}
+            {% if minutes < 1 %}{% assign minutes = 1 %}{% endif %}
+            <span class="papermod-post-reading-time">
+              <i class="far fa-clock"></i>
+              {{ minutes }} min read
+            </span>
+            {% if post.categories.size > 0 %}
+            <div class="papermod-post-tags">
+              {% for category in post.categories %}
+              <span class="papermod-tag">{{ category }}</span>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+          <h3 class="papermod-post-title">{{ post.title | escape }}</h3>
+          <p class="papermod-post-desc">
+            {% if post.description %}
+            {{ post.description }}
+            {% else %}
+            {{ post.excerpt | strip_html | truncatewords: 25 }}
+            {% endif %}
+          </p>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
   {% endfor %}
-</ul>
-
+  
+  {% else %}
+  <p style="color: #888; text-align: center; padding: 40px 0;">
+    No posts yet. Check back soon!
+  </p>
+  {% endif %}
+</div>

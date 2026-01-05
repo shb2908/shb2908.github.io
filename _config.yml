@@ -4,6 +4,10 @@ baseurl: ""
 url: "https://shb2908.github.io" 
 
 markdown: kramdown
+kramdown:
+  auto_ids: true
+  syntax_highlighter: rouge
+  
 theme: minima 
 plugins:
   - jekyll-feed

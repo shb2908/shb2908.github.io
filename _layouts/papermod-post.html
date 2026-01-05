@@ -1,0 +1,145 @@
+---
+layout: default
+---
+<link rel="stylesheet" href="{{ " /assets/css/papermod.css" | relative_url }}">
+
+<article class="papermod-post">
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress">
+        <div class="reading-progress-bar" id="reading-progress"></div>
+    </div>
+
+    <!-- Post Header -->
+    <header class="papermod-post-header">
+        <div class="papermod-post-meta">
+            <span class="papermod-post-date">
+                <i class="far fa-calendar"></i>
+                {{ page.date | date: "%B %d, %Y" }}
+            </span>
+            {% assign words = content | number_of_words %}
+            {% assign minutes = words | divided_by: 200 %}
+            {% if minutes < 1 %}{% assign minutes=1 %}{% endif %} <span class="papermod-post-reading-time">
+                <i class="far fa-clock"></i>
+                {{ minutes }} min read
+                </span>
+                {% if page.categories.size > 0 %}
+                <div class="papermod-post-tags">
+                    {% for category in page.categories %}
+                    <span class="papermod-tag">{{ category }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+        </div>
+        <h1 class="papermod-post-title">{{ page.title | escape }}</h1>
+    </header>
+
+    <!-- Post Content -->
+    <div class="papermod-content" id="post-content">
+        {{ content }}
+    </div>
+
+    <!-- Post Footer with Navigation -->
+    <footer class="papermod-post-footer">
+        <!-- Prev/Next Navigation -->
+        <nav class="post-nav">
+            {% if page.previous.url %}
+            <div class="post-nav-item prev">
+                <span class="post-nav-label">« Previous</span>
+                <a href="{{ page.previous.url | relative_url }}" class="post-nav-title">
+                    {{ page.previous.title }}
+                </a>
+            </div>
+            {% endif %}
+
+            {% if page.next.url %}
+            <div class="post-nav-item next">
+                <span class="post-nav-label">Next »</span>
+                <a href="{{ page.next.url | relative_url }}" class="post-nav-title">
+                    {{ page.next.title }}
+                </a>
+            </div>
+            {% endif %}
+        </nav>
+
+        <!-- Share & Footer Links -->
+        <div class="papermod-footer-links">
+            <a href="{{ '/blog/' | relative_url }}" class="papermod-footer-link">← Back to Blog</a>
+            <span class="papermod-separator">·</span>
+            <a href="#" class="papermod-footer-link" onclick="scrollToTop(); return false;">↑ Top</a>
+        </div>
+    </footer>
+</article>
+
+<!-- Back to Top Button -->
+<button class="back-to-top" id="back-to-top" title="Back to top" onclick="scrollToTop()">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12 4l-8 8h5v8h6v-8h5z" />
+    </svg>
+</button>
+
+<script>
+    // Add header anchors to h2, h3, h4 elements (PaperMod signature)
+    document.addEventListener('DOMContentLoaded', function () {
+        const content = document.getElementById('post-content');
+        const headers = content.querySelectorAll('h2, h3, h4');
+
+        headers.forEach(function (header) {
+            // Create slug from header text
+            const text = header.textContent.trim();
+            const slug = text.toLowerCase()
+                .replace(/[^\w\s-]/g, '')
+                .replace(/\s+/g, '-');
+
+            // Set ID on header
+            header.id = slug;
+
+            // Create anchor link
+            const anchor = document.createElement('a');
+            anchor.href = '#' + slug;
+            anchor.className = 'header-anchor';
+            anchor.textContent = '#';
+            anchor.setAttribute('aria-hidden', 'true');
+
+            header.appendChild(anchor);
+        });
+    });
+
+    // Reading progress bar
+    window.addEventListener('scroll', function () {
+        const article = document.querySelector('.papermod-post');
+        const progressBar = document.getElementById('reading-progress');
+
+        if (article && progressBar) {
+            const articleTop = article.offsetTop;
+            const articleHeight = article.offsetHeight;
+            const windowHeight = window.innerHeight;
+            const scrollTop = window.scrollY;
+
+            const progress = Math.min(100, Math.max(0,
+                ((scrollTop - articleTop + windowHeight * 0.5) / articleHeight) * 100
+            ));
+
+            progressBar.style.width = progress + '%';
+        }
+    });
+
+    // Back to top button visibility
+    window.addEventListener('scroll', function () {
+        const backToTop = document.getElementById('back-to-top');
+        if (backToTop) {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        }
+    });
+
+    // Smooth scroll to top
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+</script>
