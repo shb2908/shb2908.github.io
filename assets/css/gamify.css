@@ -1,42 +1,64 @@
 /* --- LAYOUT: SIDEBAR + CONTENT --- */
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
 :root {
     --sidebar-width: 280px;
-    --bg-color: #fff;
-    --text-color: #333;
-    --sidebar-bg: #f8f9fa;
-    --border-color: #eaeaea;
-    --accent-color: #0066cc;
-    --xp-color: #333;
-    --card-bg: #fff;
-    --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    --bg-color: #151515;
+    --text-color: #fff;
+    --sidebar-bg: #0a0a0a;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --accent-color: #dc143c;
+    --xp-color: #fff;
+    --card-bg: rgba(30, 30, 30, 0.8);
+    --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Dark Mode */
+/* Dark Mode - same as default now */
 body.dark-mode {
-    --bg-color: #1a1a1a;
-    --text-color: #e0e0e0;
-    --sidebar-bg: #222;
-    --border-color: #333;
-    --card-bg: #2a2a2a;
+    --bg-color: #151515;
+    --text-color: #fff;
+    --sidebar-bg: #0a0a0a;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --card-bg: rgba(30, 30, 30, 0.8);
     --xp-color: #fff;
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --bg-color: #1a1a1a;
-        --text-color: #e0e0e0;
-        --sidebar-bg: #222;
-        --border-color: #333;
-        --card-bg: #2a2a2a;
+        --bg-color: #151515;
+        --text-color: #fff;
+        --sidebar-bg: #0a0a0a;
+        --border-color: rgba(255, 255, 255, 0.1);
+        --card-bg: rgba(30, 30, 30, 0.8);
         --xp-color: #fff;
     }
 }
 
+html {
+    height: 100%;
+}
+
+html::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4) 1px, transparent 1px);
+    background-size: 2px 2px;
+    background-repeat: repeat;
+    pointer-events: none;
+    z-index: 9999;
+}
+
 body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: var(--bg-color);
-    color: var(--text-color);
+    font-family: "Space Mono", monospace;
+    font-size: 16px;
+    background: #151515;
+    color: #fff;
+    line-height: 2.0;
     display: flex;
     min-height: 100vh;
 }
@@ -188,16 +210,17 @@ body {
     flex: 1;
     padding: 60px 80px;
     max-width: 1000px;
-    /* Content limit */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background: #151515;
 }
 
 .page-content {
     max-width: 800px;
     flex: 1;
-    /* Pushes footer to bottom */
+    background: transparent;
+    color: #fff;
 }
 
 /* --- GAMIFICATION ELEMENTS (Subtle) --- */
@@ -249,26 +272,34 @@ body {
     }
 }
 
-/* --- TYPOGRAPHY & ELEMENTS --- */
 h1,
 h2,
 h3 {
-    color: var(--text-color);
+    color: #fff;
     font-weight: 700;
 }
 
 p {
-    line-height: 1.7;
+    line-height: 2.0;
     margin-bottom: 1.5rem;
 }
 
 a {
-    color: var(--accent-color);
-    text-decoration: none;
+    color: #fff;
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 255, 255, 0.5);
+    text-underline-offset: 2px;
 }
 
 a:hover {
-    text-decoration: underline;
+    text-decoration-color: #fff;
+}
+
+hr {
+    height: 4px;
+    background: #fff;
+    opacity: 0.25;
+    border: none;
 }
 
 /* Post List Styles */
