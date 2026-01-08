@@ -2,6 +2,28 @@
    PaperMod-Inspired Blog Styles
    ============================================ */
 
+/* --- Override main.css markdown-style pseudo-elements --- */
+.blog-archive h1::before,
+.blog-archive h2::before,
+.blog-archive h3::before,
+.blog-archive h4::before,
+.blog-archive h5::before,
+.blog-archive h6::before,
+.papermod-post h1::before,
+.papermod-post h2::before,
+.papermod-post h3::before,
+.papermod-post h4::before,
+.papermod-post h5::before,
+.papermod-post h6::before {
+    content: none !important;
+}
+
+.blog-archive ul>li::before,
+.blog-archive .papermod-post-list>li::before,
+.papermod-post ul>li::before {
+    content: none !important;
+}
+
 /* --- Blog Archive Page --- */
 .blog-archive {
     max-width: 720px;
@@ -9,26 +31,32 @@
 
 .blog-archive-header {
     margin-bottom: 40px;
+    display: block;
 }
 
 .blog-archive-title {
     font-size: 2rem;
     font-weight: 700;
     color: var(--text-color);
-    margin-bottom: 8px;
+    margin-bottom: 12px;
+    text-indent: 0 !important;
+    display: block;
 }
 
 .blog-archive-desc {
     color: #888;
     font-size: 0.95rem;
     line-height: 1.6;
+    text-indent: 0 !important;
+    margin: 0;
+    display: block;
 }
 
 /* Post List - PaperMod Style */
 .papermod-post-list {
     list-style: none;
-    padding: 0;
-    margin: 0;
+    padding: 2px;
+    margin: 3px;
 }
 
 .papermod-post-item {
@@ -52,7 +80,19 @@ body.dark-mode .papermod-post-item:hover {
 .papermod-post-link {
     text-decoration: none;
     display: block;
+    border: none !important;
+    border-bottom: none !important;
+    background: transparent !important;
+    color: inherit !important;
+    outline: none !important;
 }
+
+/* .papermod-post-link:hover, */
+/* .papermod-post-link:focus {
+    background: transparent !important;
+    color: inherit !important;
+    outline: none !important;
+} */
 
 .papermod-post-title {
     font-size: 1.25rem;
@@ -60,6 +100,8 @@ body.dark-mode .papermod-post-item:hover {
     color: var(--text-color);
     margin: 0 0 8px 0;
     transition: color 0.2s ease;
+    text-indent: 0 !important;
+    padding-left: 0 !important;
 }
 
 .papermod-post-link:hover .papermod-post-title {
@@ -67,39 +109,49 @@ body.dark-mode .papermod-post-item:hover {
 }
 
 .papermod-post-meta {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 12px !important;
     font-size: 0.85rem;
     color: #888;
     margin-bottom: 8px;
 }
 
 .papermod-post-date {
-    display: flex;
+    display: inline-flex !important;
     align-items: center;
     gap: 4px;
+    text-indent: 0 !important;
 }
 
 .papermod-post-reading-time {
-    display: flex;
+    display: inline-flex !important;
     align-items: center;
     gap: 4px;
+    text-indent: 0 !important;
+    white-space: nowrap;
 }
 
 .papermod-post-tags {
-    display: flex;
+    display: inline-flex !important;
     gap: 6px;
     flex-wrap: wrap;
+    align-items: center;
+    text-indent: 0 !important;
 }
 
 .papermod-tag {
     background: var(--border-color);
-    color: #666;
-    padding: 2px 8px;
-    border-radius: 3px;
+    color: #aaa;
+    padding: 3px 10px;
+    border-radius: 4px;
     font-size: 0.75rem;
     text-transform: lowercase;
+    text-indent: 0 !important;
+    display: inline-block;
+    white-space: nowrap;
 }
 
 body.dark-mode .papermod-tag {
@@ -110,7 +162,10 @@ body.dark-mode .papermod-tag {
     color: #666;
     font-size: 0.9rem;
     line-height: 1.6;
-    margin: 0;
+    margin: 8px 0 0 0;
+    padding: 0;
+    padding-left: 0 !important;
+    text-indent: 0 !important;
 }
 
 body.dark-mode .papermod-post-desc {

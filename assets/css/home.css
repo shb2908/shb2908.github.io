@@ -1,5 +1,33 @@
 /* Home Page Styles */
 
+/* --- Override main.css markdown-style pseudo-elements --- */
+.home h1::before,
+.home h2::before,
+.home h3::before,
+.home h4::before,
+.home h5::before,
+.home h6::before {
+    content: none !important;
+}
+
+.home ul>li::before,
+.home .post-list>li::before {
+    content: none !important;
+}
+
+/* Reset text-indent for proper multi-line alignment */
+.home h1,
+.home h2,
+.home h3,
+.home h4,
+.home h5,
+.home h6,
+.home p,
+.home li,
+.home a {
+    text-indent: 0 !important;
+}
+
 /* Welcome Section */
 .welcome-section {
     margin-bottom: 3rem;
@@ -44,6 +72,81 @@
 .read-more-link {
     font-size: 0.9rem;
     font-weight: 600;
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+
+/* Post List Styles */
+.post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.post-list li {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.post-list li:last-child {
+    border-bottom: none;
+}
+
+.post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 0.75rem;
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.post-meta .date {
+    color: #888;
+}
+
+.post-meta .tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.post-meta .tag {
+    background: var(--border-color);
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: #aaa;
+}
+
+.post-link {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-color);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+    border: none !important;
+    border-bottom: none !important;
+    background: transparent !important;
+}
+
+.post-link:hover,
+.post-link:focus {
+    color: var(--accent-color);
+    text-decoration: none;
+    background: transparent !important;
+    outline: none !important;
+}
+
+.post-excerpt {
+    font-size: 0.95rem;
+    color: #aaa;
+    line-height: 1.7;
+    margin: 0.5rem 0;
 }
 
 /* Contact Section */

@@ -62,7 +62,9 @@ title: Home
     <h2 class="contact-title">Get In Touch</h2>
     <p class="contact-subtitle">Drop me a message here :)</p>
 
-    <form id="contact-form" data-email="{{ site.email }}" class="contact-form">
+    <form id="contact-form" data-form-url="{{ site.contact_form.url }}"
+      data-entry-name="{{ site.contact_form.entry_name }}" data-entry-email="{{ site.contact_form.entry_email }}"
+      data-entry-message="{{ site.contact_form.entry_message }}" class="contact-form">
       <div class="contact-input-group">
         <input type="text" id="contact-name" placeholder="Your Name" required class="contact-input">
         <input type="email" id="contact-email" placeholder="Your Email" required class="contact-input">

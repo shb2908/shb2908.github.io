@@ -26,4 +26,10 @@ social:
   bluesky: "https://bsky.app/profile/yourusername"
   github: "https://github.com/shb2908"
   scholar: "https://scholar.google.com/citations?user=Hm5_iKMAAAAJ&hl=en" 
-  cloud: "" # Add your cloud/storage link here
+  cloud: "" 
+
+contact_form:
+  url: "https://docs.google.com/forms/d/e/1FAIpQLSexSzszsyWnMz6BgyML3LOMRbG0N4dHhlCFG9IOmEZSg4AtZg/formResponse"
+  entry_name: "entry.2005620554"
+  entry_email: "entry.1045781291"
+  entry_message: "entry.1065046570"
