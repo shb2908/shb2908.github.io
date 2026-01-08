@@ -1,32 +1,56 @@
 ---
 layout: papermod-post
-title: "When the Chain Rule Fails to Teach Planning: A Mathematical View of Next-Token Prediction"
+title: "Deeper look at Next-Token Prediction and what's beyond"
 date: 2026-01-05 12:00:00 +0530
 categories: [research, ai, language-models]
-description: "A mathematical analysis of why next-token prediction with teacher-forcing fails to learn planning, even with infinite data and capacity."
+description: "why does next-token prediction with teacher-forcing fails to learn planning, even with infinite data and capacity."
 ---
 
-## The Optimistic Argument from the Chain Rule
+## A Bit about Next-Token Prediction
+Next-token prediction (NTP) is the primary objective for training sequence models. This
+objective involves a technique called teacher forcing , where the model’s predicted output at each step is replaced with the ground truth from the real dataset. One of teacher forcing’s benefits is that it accelerates the training by providing the model
+with the correct previous output, so the learning does not suffer from error accumulation,
+and the gradient update is more stable. Another crucial benefit is that it enables parallelism
+and hardware acceleration in training because the model can simultaneously process all
+time steps, rather than sequentially waiting for its own predictions. 
+**Mathematically,** \\
+Let $y = (y_1, \ldots, y_T)$ be a token sequence with $y_t \in V$. An autoregressive language model parameterized by $\theta$ defines a joint distribution that factorizes via the chain rule:
 
-Let $V$ be a finite vocabulary and let $r = (r_1, \ldots, r_T) \in V^T$ denote a response sequence conditioned on a prefix or problem description $p$. For any joint distribution $P(r \mid p)$, the chain rule guarantees the factorization
+$$P_\theta(y) = \prod_{t=1}^{T} p_\theta(y_t \mid y_{\lt t}), \quad y_{\lt t} = (y_1, \ldots, y_{t-1}).$$
 
-$$P(r \mid p) = \prod_{i=1}^{T} P(r_i \mid p, r_{<i}),$$
+Training uses maximum likelihood estimation with **teacher forcing**. Given a dataset $\{y^{(i)}\}_{i=1}^{N}$, the objective is
 
-where $r_{<i} = (r_1, \ldots, r_{i-1})$.
+$$\theta^* = \arg\max_\theta \sum_{i=1}^{N} \sum_{t=1}^{T} \log p_\theta(y_t^{(i)} \mid y_{\lt t}^{(i)}),$$
 
-From a purely representational standpoint, this implies that there exists a next-token predictor $q_\theta$ such that
+which is equivalent to minimizing the cross-entropy between the empirical data distribution and $p_\theta$.
 
-$$q_\theta(r_i \mid p, r_{<i}) = P(r_i \mid p, r_{<i}) \quad \text{for all } i.$$
+At **inference**, the model generates tokens sequentially by conditioning on previously generated tokens $\hat{y}_{<t}$ and an optional context $c$. **Greedy decoding** selects
 
-Under this assumption, autoregressive sampling from $q_\theta$ exactly reproduces the true distribution. This argument underlies the claim that **next-token prediction is universally expressive**.
+$$\hat{y}_t = \arg\max_{y_t \in V} p_\theta(y_t \mid \hat{y}_{<t}, c),$$
 
----
+while **stochastic decoding** samples $y_t \sim p_\theta(\cdot \mid \hat{y}_{<t}, c)$. This procedure defines next-token prediction as iterative conditional density estimation under an autoregressive factorization.
+
+## Teacher-Forcing as an Optimization Objective
+
+Teacher-forced training optimizes the expected negative log-likelihood of the target sequence under the model distribution. Given an input prompt $p$ and a target response sequence $r = (r_1, r_2, \dots, r_T)$, the teacher-forcing loss is defined as
+
+$$\mathcal{L}_{\text{TF}}(\theta) = - \mathbb{E}_{(p,r) \sim \mathcal{D}} \left[ \sum_{i=1}^{T} \log q_\theta(r_i \mid p, r_{\lt i}) \right],$$
+
+where $q_\theta$ denotes the model distribution and $r_{\lt i} = (r_1, \dots, r_{i-1})$ is the ground-truth prefix.
+
+This objective decomposes sequence learning into a collection of supervised subproblems, one for each time step. Each subproblem is trained by conditioning on the true prefix $r_{\lt i}$, which is available during training but not at inference time, where the model must instead condition on its own previously generated tokens.
+
+The standard assumption underlying teacher forcing is that minimizing $\mathcal{L}_{\text{TF}}$ yields a model whose conditional distributions satisfy
+
+$$q_\theta(r_i \mid p, r_{\lt i}) \approx P(r_i \mid p, r_{\lt i}) \quad \text{for all } i,$$
+
+where $P$ denotes the true data-generating distribution.
 
 ## Error Compounding Is Not the Core Issue
 
 Suppose instead that the learned model has a small but nonzero per-token error rate
 
-$$P_{q_\theta}(\hat{r}_i \neq r_i \mid p, r_{<i}) = \varepsilon.$$
+$$P_{q_\theta}(\hat{r}_i \neq r_i \mid p, r_{\lt i}) = \varepsilon.$$
 
 Then the probability of producing an entirely correct sequence under autoregressive inference satisfies
 
@@ -34,83 +58,53 @@ $$P(\hat{r} = r) = (1 - \varepsilon)^T,$$
 
 which decays exponentially in $T$. This is the standard **snowballing error argument**.
 
-However, this analysis presupposes that $q_\theta(\cdot \mid p, r_{<i})$ is already a good approximation to the true conditional distribution. It only diagnoses a failure of **execution at inference time**, not a failure of **learning**. If the conditionals were accurate, one could in principle recover the correct plan via verification, backtracking, or search.
+However, this analysis presupposes that $q_\theta(\cdot \mid p, r_{\lt i})$ is already a good approximation to the true conditional distribution. It only diagnoses a failure of **execution at inference time**, not a failure of **learning**. If the conditionals were accurate, one could in principle recover the correct plan via verification, backtracking, or search.
 
 > The deeper question is therefore whether teacher-forced training actually recovers the correct conditionals.
 
----
-
-## Teacher-Forcing as an Optimization Objective
-
-Teacher-forced training optimizes the expected log-likelihood
-
-$$\mathcal{L}_{\text{TF}}(\theta) = \mathbb{E}_{(p,r) \sim \mathcal{D}} \left[ \sum_{i=1}^{T} \log q_\theta(r_i \mid p, r_{<i}) \right].$$
-
-This objective decomposes sequence learning into $T$ supervised subproblems. Crucially, **each subproblem conditions on the ground-truth prefix $r_{<i}$**, which is information that will not be available at inference time.
-
-The standard assumption is that minimizing $\mathcal{L}_{\text{TF}}$ yields $q_\theta(r_i \mid p, r_{<i}) \approx P(r_i \mid p, r_{<i})$ for all $i$. The paper shows that this assumption fails for a broad class of tasks.
-
----
-
-## Lookahead Tasks and Conditional Shortcutting
-
-Consider tasks in which the correct value of an early token $r_1$ depends on information that is only logically determined by later tokens $r_k, \ldots, r_T$. Formally, such tasks exhibit a dependency structure where
-
-$$r_1 = f(p, r_{k:T}) \quad \text{for some } k > 1,$$
-
-while no function $g$ exists such that $r_1 = g(p)$ alone.
-
-In these settings, teacher-forcing introduces an alternative family of conditional predictors
-
-$$\tilde{f}_i(p, r_{<i}) \approx r_i,$$
-
-that exploit correlations between $r_{<i}$ and $r_i$ **without recovering the underlying dependency on $p$**.
-
-These predictors are valid minimizers of $\mathcal{L}_{\text{TF}}$ but do not correspond to the true conditional distribution $P(r_i \mid p, r_{<i})$ that would be encountered at inference time.
-
----
 
 ## The Clever Hans Mechanism
 
 For many tokens with large $i$, the conditional entropy
 
-$$H(r_i \mid p, r_{<i})$$
+$$H(r_i \mid p, r_{\lt i})$$
 
 is extremely small. Teacher-forcing therefore allows the model to learn a **trivial mapping** from $r_{i-1}$ to $r_i$, bypassing the need to compute any global plan from $p$.
 
 Formally, the model converges to a factorization
 
-$$q_\theta(r_i \mid p, r_{<i}) \approx q_\theta(r_i \mid r_{i-1}),$$
+$$q_\theta(r_i \mid p, r_{\lt i}) \approx q_\theta(r_i \mid r_{i-1}),$$
 
 even when
 
-$$P(r_i \mid p, r_{<i}) \neq P(r_i \mid r_{i-1})$$
+$$P(r_i \mid p, r_{\lt i}) \neq P(r_i \mid r_{i-1})$$
 
-at test time due to distributional shift in $r_{<i}$.
+at test time due to distributional shift in $r_{\lt i}$.
 
 This shortcut **perfectly minimizes training loss** while discarding the intended computation. It is structurally induced by the objective, not by insufficient data or capacity.
 
----
 
 ## Loss of Supervision and the Indecipherable Token
 
-Once later tokens are fitted via shortcuts, the remaining supervision concentrates on early tokens such as $r_1$. The learning problem reduces to minimizing
+When later tokens in an autoregressive sequence can be fitted through shortcut solutions, the effective supervision collapses onto early tokens, in particular the first response token $r_1$. Under teacher-forced training, the learning objective for this token reduces to
 
-$$\mathbb{E}_{(p,r) \sim \mathcal{D}} \left[ \log q_\theta(r_1 \mid p) \right],$$
+$$\mathbb{E}_{(p,r) \sim \mathcal{D}} \left[ \log q_\theta(r_1 \mid p) \right].$$
 
-but the correct predictor requires implicitly reconstructing the entire latent plan.
+In structured prediction tasks, the correct value of $r_1$ is not determined solely by the prompt $p$, but depends on an implicit latent plan that specifies the entire response sequence. Suppose the task requires composing $\ell$ discrete subroutines drawn from a finite set $\mathcal{C}$. The resulting hypothesis space has cardinality
 
-If the task requires composing $\ell$ discrete subroutines drawn from a finite set $\mathcal{C}$, the effective hypothesis space has size $|\mathcal{C}|^\ell$. The loss for $r_1$ becomes effectively binary:
+$$|\mathcal{H}| = |\mathcal{C}|^{\ell}.$$
 
-$$\ell(\theta) = \begin{cases} 0, & \text{if all subroutines are correct}, \\ \infty, & \text{otherwise}. \end{cases}$$
+Correct prediction of $r_1$ requires selecting the unique latent plan consistent with the ground-truth response. This induces an effective loss function of the form
 
-Gradient-based optimization over such a loss surface is **combinatorial and intractable**. As a result, the learned predictor for $r_1$ converges to a high-entropy approximation
+$$\ell(\theta) = \begin{cases} 0, & \text{if all } \ell \text{ subroutines are correct}, \\ \infty, & \text{otherwise}. \end{cases}$$
+
+The resulting loss surface is discontinuous and combinatorial, making gradient-based optimization intractable. Infinitesimal parameter updates almost surely correspond to incorrect latent plans and therefore incur maximal loss.
+
+Consequently, the learned conditional distribution for the first token converges to a high-entropy solution,
 
 $$q_\theta(r_1 \mid p) \approx \text{Uniform},$$
 
-even though the model achieves near-zero training loss overall.
-
----
+even though the model achieves near-zero training loss over full sequences under teacher forcing. This demonstrates a loss of effective supervision for early tokens and explains the emergence of indecipherable initial predictions in otherwise well-trained autoregressive models.
 
 ## Why Inference-Time Fixes Cannot Help
 
@@ -122,25 +116,10 @@ $$q_\theta(\cdot \mid p) \not\approx P(\cdot \mid p),$$
 
 so any decoding algorithm operating on $q_\theta$ is **fundamentally misinformed**.
 
----
 
-## Alternative Objectives and Identifiability
+## Thoughts
 
-When training is modified to remove access to ground-truth prefixes—such as by predicting multiple future tokens jointly or by conditioning on uninformative placeholders—the shortcut family $q_\theta(r_i \mid r_{i-1})$ is no longer feasible.
-
-In these objectives, the model must minimize
-
-$$\mathbb{E}_{(p,r) \sim \mathcal{D}} \left[ \sum_{i=1}^{T} \log q_\theta(r_i \mid p) \right],$$
-
-which **restores identifiability** of the true planning mechanism and empirically recovers correct generalization.
-
----
-
-## Conclusion
-
-The chain rule ensures that next-token predictors are **expressive**, but teacher-forced optimization does not ensure that the correct factorization is **learned**. In lookahead tasks, the training objective admits spurious minimizers that condition on the answer rather than compute it.
-
-This failure is **mathematical and structural**. It arises even in-distribution, even with infinite data, and even for simple deterministic tasks. As a result, planning failures in language models cannot be fully attributed to inference-time compounding of errors. They can originate directly from the next-token learning objective itself.
+The chain rule ensures that next-token predictors are **expressive**, but teacher-forced optimization does not ensure that the correct factorization is **learned**,the model conditions on ground-truth prefixes that implicitly contain information about future narrative outcomes, enabling shortcut solutions that bypass planning entirely.In lookahead tasks, the training objective admits spurious minimizers that condition on the answer rather than compute it.Long-horizon planning problems such as story generation, multiple factorizations achieve identical likelihood while relying on qualitatively different internal strategies including goal-conditioned narrative generation in which later tokens encode or reveal future structure, allowing earlier predictions to be fit without explicitly constructing a latent plan.
 
 ---
 
