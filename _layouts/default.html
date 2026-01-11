@@ -4,6 +4,12 @@
 <head>
     {% include meta.html %}
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ site.favicon | relative_url }}">
+    <link rel="shortcut icon" href="{{ site.favicon | relative_url }}">
+    <link rel="apple-touch-icon" href="{{ site.favicon | relative_url }}">
+    
     <link rel="stylesheet" href="{{ '/assets/css/gamify.css' | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/terminal.css' | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
@@ -44,17 +50,20 @@
         </div>
 
         <nav class="nav-links">
-            <a href="{{ '/' | relative_url }}" class="nav-item">
+            <a href="{{ '/' | relative_url }}#home" class="nav-item" data-section="home">
                 <i class="fas fa-home"></i> Home
             </a>
-            <a href="{{ '/about' | relative_url }}" class="nav-item">
+            <a href="{{ '/' | relative_url }}#about" class="nav-item" data-section="about">
                 <i class="fas fa-user"></i> About
             </a>
-            <a href="{{ '/research' | relative_url }}" class="nav-item">
+            <a href="{{ '/' | relative_url }}#research" class="nav-item" data-section="research">
                 <i class="fas fa-flask"></i> Research
             </a>
-            <a href="{{ '/blog' | relative_url }}" class="nav-item">
+            <a href="{{ '/' | relative_url }}#blog" class="nav-item" data-section="blog">
                 <i class="fas fa-pen-nib"></i> Blog
+            </a>
+            <a href="{{ '/' | relative_url }}#contact" class="nav-item" data-section="contact">
+                <i class="fas fa-envelope"></i> Contact
             </a>
             <a href="#" class="nav-item" onclick="openTerminal(); return false;">
                 <i class="fas fa-terminal"></i> Terminal

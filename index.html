@@ -4,9 +4,14 @@ title: Home
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/home.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/single-page.css' | relative_url }}">
 
-<div class="home">
-  <section class="welcome-section">
+<div class="single-page-container">
+  
+  <!-- HOME SECTION -->
+  <section id="home" class="page-section home-section">
+    <div class="section-content home">
+      <div class="welcome-section">
     <h1 class="welcome-title">
       <span class="welcome-emoji">👋</span> Welcome to My Blog
     </h1>
@@ -18,13 +23,13 @@ title: Home
     <p class="welcome-thanks">
       Thanks for Visiting!
     </p>
-  </section>
+      </div>
 
   <h2 class="recent-posts-title">Recent Posts</h2>
 
   {% if site.posts.size > 0 %}
   <ul class="post-list">
-    {% for post in site.posts %}
+        {% for post in site.posts limit:3 %}
     <li>
       <div class="post-meta">
         <span class="date">{{ post.date | date: "%Y-%m-%d" }}</span>
@@ -54,12 +59,236 @@ title: Home
     {% endfor %}
   </ul>
   {% else %}
-  <p>No posts yet. Check back soon!</p>
+      <p class="no-posts">No posts yet. Check back soon!</p>
   {% endif %}
+    </div>
+    <div class="scroll-indicator">
+      <span>Scroll to explore</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </section>
 
-  <!-- Get In Touch Section -->
-  <section class="contact-section">
-    <h2 class="contact-title">Get In Touch</h2>
+  <!-- ABOUT SECTION -->
+  <section id="about" class="page-section about-section">
+    <div class="section-content">
+      <h1 class="section-title">About Me</h1>
+      
+      <div class="about-intro">
+        <p>Hello, I am <strong>Soham Bose</strong>, an AI researcher and developer with a strong focus on natural language processing, machine learning, and computer vision. I am driven by complex problem solving, enjoy deep exploration of large codebases, and actively engage with challenging engineering problems that require rigorous analytical thinking. Beyond this when I am not coding or brainstorming, I enjoy my time listening to music (huge fanatic of rock), and spend time playing the guitar. I also enjoy reading, and I am drawn to sci-fi and thriller films and delve into complex narratives of it.</p>
+        
+        <h2>Research Interests</h2>
+        <p>My current research agenda investigates how to incentivize the capabilities of pretrained models by empowering them to perform complex reasoning through multimodal learning, interacting with environments, and constructing their own goals. I explore how to make models interpretable so they can properly illustrate the underlying process of their reasoning while moving away from shortcut solutions.</p>
+        
+        <div class="research-topics">
+          <div class="research-topic">
+            <h3>🤖 Agentic Reasoning</h3>
+            <p>To make agents able to reason under complex environments especially through coding or embodied approaches and to collaborate among themselves in solving long-horizon goals while maintaining consistency and improving through reflection.</p>
+          </div>
+          
+          <div class="research-topic">
+            <h3>🔗 Multi-Modality</h3>
+            <p>To explore how multimodal contexts can act as sources of richer learning signals and make models utilize the best of both modalities for enhanced understanding and reasoning.</p>
+          </div>
+          
+          <div class="research-topic">
+            <h3>🔍 Interpretability & Robustness</h3>
+            <p>Understanding how internal representations evolve over time during interaction, adaptation, and learning. Analyzing whether models can maintain stable and meaningful internal states while avoiding biases and spurious correlations.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="collab-note">If you would like to discuss my research or potential collaborations further, feel free to contact me. I'm open to connect and collaborate with each other.</p>
+
+      <div class="about-details">
+        <h2>My Journey</h2>
+        <ul class="journey-list">
+          <li><span class="journey-label">Current Role:</span> AI Researcher & Developer</li>
+          <li><span class="journey-label">Interests:</span> Research, Software Dev, Problem Solving</li>
+          <li><span class="journey-label">Mission:</span> To make knowledge more accessible and engaging</li>
+        </ul>
+      </div>
+
+      <div class="connect-note">
+        <h2>Connect 👨‍💻</h2>
+        <p>If the above interests resonate with you or just want to have a casual chat, feel free to reach out via the social links or email me directly. I am always up for collaborating or just hacking on interesting ideas in general!</p>
+        
+        <div class="connect-links">
+          <a href="mailto:{{ site.email }}" class="connect-link">
+            <i class="fas fa-envelope"></i> Email
+          </a>
+          <span class="connect-separator">/</span>
+          <a href="{{ site.social.scholar }}" target="_blank" class="connect-link">
+            <i class="fas fa-graduation-cap"></i> Google Scholar
+          </a>
+          <span class="connect-separator">/</span>
+          <a href="{{ site.social.twitter }}" target="_blank" class="connect-link">
+            <i class="fab fa-x-twitter"></i> Twitter
+          </a>
+          <span class="connect-separator">/</span>
+          <a href="{{ site.social.github }}" target="_blank" class="connect-link">
+            <i class="fab fa-github"></i> Github
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH SECTION -->
+  <section id="research" class="page-section research-section">
+    <div class="section-content">
+      <h1 class="section-title">Research</h1>
+      
+      <p class="research-intro">Research Topics: Machine Learning Algorithms / Multimodality / Computer Vision / Robustness / efficiency/ Medical Image Analysis 
+
+      <h2>Publications</h2>
+      
+      <div class="publications-list">
+        <div class="publication-item">
+          <h3 class="pub-title">Background-Invariant Independence-Guided Multi-head Attention Network for Skin Lesion Classification</h3>
+          <p class="pub-venue"><em>MICCAI (Medical Image Computing and Computer Assisted Intervention)</em> — 2025</p>
+          <div class="pub-links">
+            <a href="https://papers.miccai.org/miccai-2025/paper/2868_paper.pdf" target="_blank" class="pub-link paper-link">
+              <i class="fas fa-file-pdf"></i> Paper
+            </a>
+            <a href="https://github.com/shb2908/BIIGMA-Net" target="_blank" class="pub-link github-link">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+          </div>
+        </div>
+
+        <div class="publication-item">
+          <h3 class="pub-title">Are Vision-xLSTM-embedded U-Nets better at segmenting medical images?</h3>
+          <p class="pub-venue"><em>Journal Neural Networks</em> — 2025</p>
+          <div class="pub-links">
+            <a href="https://www.sciencedirect.com/science/article/abs/pii/S0893608025008068" target="_blank" class="pub-link paper-link">
+              <i class="fas fa-file-pdf"></i> Paper
+            </a>
+            <a href="https://github.com/shb2908/U-VixLSTM" target="_blank" class="pub-link github-link">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+          </div>
+        </div>
+
+        <div class="publication-item">
+          <h3 class="pub-title">Multi-headed Graph-Based Attention Aided U-Net Model for Nuclei Segmentation</h3>
+          <p class="pub-venue"><em>ICONIP (International Conference on Neural Information Processing)</em> — 2024</p>
+          <div class="pub-links">
+            <a href="https://link.springer.com/chapter/10.1007/978-981-96-6688-1_16" target="_blank" class="pub-link paper-link">
+              <i class="fas fa-file-pdf"></i> Paper
+            </a>
+            <a href="https://github.com/shb2908/mhga-U-Net" target="_blank" class="pub-link github-link">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <h2>Research Experience</h2>
+      <p class="research-exp-intro">Worked on interesting problems as a researcher at these organizations:</p>
+
+      <div class="research-logos">
+        <img src="{{ '/assets/logos/img4.png' | relative_url }}" alt="Logo 1" class="research-logo">
+        <img src="{{ '/assets/logos/img3.png' | relative_url }}" alt="Logo 2" class="research-logo">
+        <img src="{{ '/assets/logos/img5.png' | relative_url }}" alt="Logo 3" class="research-logo">
+        <img src="{{ '/assets/logos/img2.png' | relative_url }}" alt="Logo 4" class="research-logo">
+        <img src="{{ '/assets/logos/img1.png' | relative_url }}" alt="Logo 5" class="research-logo">
+      </div>
+
+      <h2>Projects</h2>
+      <p class="projects-intro">Some cool things I've built:</p>
+
+      <div class="projects-grid">
+        <div class="project-card">
+          <h3 class="project-title">🧠 llm-as-judge</h3>
+          <p class="project-desc">Ranking based framework to evaluate open ended generation of llms</p>
+          <div class="project-links">
+            <a href="#" target="_blank" class="https://github.com/shb2908/llm-as-judge"><i class="fab fa-github"></i> Code</a>
+            <a href="#" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> Demo</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <h3 class="project-title">🔬 Multi-Agent LLM Orchestrator</h3>
+          <p class="project-desc">framework for building multi-agent LLM systems where multiple agents can run parallely and share context information</p>
+          <div class="project-links">
+            <a href="#" target="_blank" class="project-link"><i class="fab fa-github"></i> Code</a>
+            <a href="#" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> Demo</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <h3 class="project-title">⚡ Shopzee.ai</h3>
+          <p class="project-desc"> AI backed marketplace to enhance marketplace trust through advance fraud detection, counterfeit prevention</p>
+          <div class="project-links">
+            <a href="#" target="_blank" class="https://github.com/shb2908/Shopzee.ai"><i class="fab fa-github"></i> Code</a>
+            <a href="#" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> Demo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG SECTION -->
+  <section id="blog" class="page-section blog-section">
+    <div class="section-content">
+      <h1 class="section-title">Blog</h1>
+      <p class="blog-description">Thoughts on scientific discovery, AI research, and the continuous quest for knowledge.</p>
+
+      {% if site.posts.size > 0 %}
+      {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+
+      {% for year in posts_by_year %}
+      <div class="year-group">
+        <h2 class="year-title">{{ year.name }}</h2>
+        <ul class="blog-post-list">
+          {% for post in year.items %}
+          <li class="blog-post-item">
+            <a href="{{ post.url | relative_url }}" class="blog-post-link">
+              <div class="blog-post-meta">
+                <span class="blog-post-date">
+                  <i class="far fa-calendar"></i>
+                  {{ post.date | date: "%b %d" }}
+                </span>
+                {% assign words = post.content | number_of_words %}
+                {% assign minutes = words | divided_by: 200 %}
+                {% if minutes < 1 %}{% assign minutes = 1 %}{% endif %}
+                <span class="blog-post-reading-time">
+                  <i class="far fa-clock"></i>
+                  {{ minutes }} min read
+                </span>
+                {% if post.categories.size > 0 %}
+                <div class="blog-post-tags">
+                  {% for category in post.categories %}
+                  <span class="blog-tag">{{ category }}</span>
+                  {% endfor %}
+                </div>
+                {% endif %}
+              </div>
+              <h3 class="blog-post-title">{{ post.title | escape }}</h3>
+              <p class="blog-post-desc">
+                {% if post.description %}
+                {{ post.description }}
+                {% else %}
+                {{ post.excerpt | strip_html | truncatewords: 25 }}
+                {% endif %}
+              </p>
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+
+      {% else %}
+      <p class="no-posts">No posts yet. Check back soon!</p>
+      {% endif %}
+    </div>
+  </section>
+
+  <!-- GET IN TOUCH SECTION -->
+  <section id="contact" class="page-section contact-section">
+    <div class="section-content">
+      <h1 class="section-title">Get In Touch</h1>
     <p class="contact-subtitle">Drop me a message here :)</p>
 
     <form id="contact-form" data-form-url="{{ site.contact_form.url }}"
@@ -76,8 +305,10 @@ title: Home
         Send Message
       </button>
     </form>
+    </div>
   </section>
 
-  <script src="{{ '/_src/Contact_form.js' | relative_url }}"></script>
-
 </div>
+
+<script src="{{ '/_src/Contact_form.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/single-page.js' | relative_url }}"></script>

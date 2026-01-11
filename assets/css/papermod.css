@@ -97,7 +97,7 @@ body.dark-mode .papermod-post-item:hover {
 .papermod-post-title {
     font-size: 1.25rem;
     font-weight: 600;
-    color: var(--text-color);
+    color: #1a1a1a;
     margin: 0 0 8px 0;
     transition: color 0.2s ease;
     text-indent: 0 !important;
@@ -115,7 +115,7 @@ body.dark-mode .papermod-post-item:hover {
     align-items: center !important;
     gap: 12px !important;
     font-size: 0.85rem;
-    color: #888;
+    color: #555;
     margin-bottom: 8px;
 }
 
@@ -143,8 +143,8 @@ body.dark-mode .papermod-post-item:hover {
 }
 
 .papermod-tag {
-    background: var(--border-color);
-    color: #aaa;
+    background: rgba(0, 0, 0, 0.1);
+    color: #555;
     padding: 3px 10px;
     border-radius: 4px;
     font-size: 0.75rem;
@@ -159,7 +159,7 @@ body.dark-mode .papermod-tag {
 }
 
 .papermod-post-desc {
-    color: #666;
+    color: #3a3a3a;
     font-size: 0.9rem;
     line-height: 1.6;
     margin: 8px 0 0 0;
@@ -188,6 +188,7 @@ body.dark-mode .papermod-post-desc {
     font-weight: 700;
     line-height: 1.3;
     margin-bottom: 16px;
+    color: #1a1a1a;
 }
 
 .papermod-post-header .papermod-post-meta {
@@ -198,7 +199,7 @@ body.dark-mode .papermod-post-desc {
 .papermod-content {
     font-size: 1.05rem;
     line-height: 1.8;
-    color: var(--text-color);
+    color: #1a1a1a;
 }
 
 .papermod-content h2,
@@ -207,6 +208,7 @@ body.dark-mode .papermod-post-desc {
     position: relative;
     margin-top: 2.5rem;
     margin-bottom: 1rem;
+    color: #1a1a1a;
 }
 
 /* Header Anchors - PaperMod Signature */
@@ -231,6 +233,7 @@ body.dark-mode .papermod-post-desc {
 
 .papermod-content p {
     margin-bottom: 1.5rem;
+    color: #1a1a1a;
 }
 
 .papermod-content ul,
@@ -242,13 +245,14 @@ body.dark-mode .papermod-post-desc {
 .papermod-content li {
     margin-bottom: 0.5rem;
     line-height: 1.7;
+    color: #1a1a1a;
 }
 
 .papermod-content blockquote {
     border-left: 4px solid var(--accent-color);
     margin: 1.5rem 0;
     padding: 0.5rem 0 0.5rem 1.5rem;
-    color: #666;
+    color: #3a3a3a;
     font-style: italic;
 }
 

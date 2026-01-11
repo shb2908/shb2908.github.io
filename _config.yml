@@ -1,7 +1,10 @@
 title: "Soham's Blog"
 description: "A gamified blog about scientific discovery and uncertainty."
 baseurl: "" 
-url: "https://shb2908.github.io" 
+url: "https://shb2908.github.io"
+
+# Favicon (browser tab icon)
+favicon: "/assets/favicon.png" 
 
 markdown: kramdown
 kramdown:

@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
 
 :root {
-    --sidebar-width: 280px;
+    --sidebar-width: 400px;
     --bg-color: #151515;
     --text-color: #fff;
     --sidebar-bg: #0a0a0a;
@@ -41,8 +41,8 @@ html::after {
     content: '';
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
+    left: var(--sidebar-width);
+    width: calc(100% - var(--sidebar-width));
     height: 100%;
     background-image: linear-gradient(rgba(0, 0, 0, 0.4) 1px, transparent 1px);
     background-size: 2px 2px;
@@ -139,19 +139,27 @@ html {
     font-size: 1rem;
     color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
-    padding: 8px 0;
-    border-bottom: 1px solid transparent;
-    transition: all 0.2s;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
     display: flex;
     align-items: center;
     gap: 10px;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    background: transparent;
 }
 
 .nav-item:hover {
     color: #ffffff;
-    padding-left: 5px;
+    background: rgba(255, 255, 255, 0.1);
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.nav-item.active {
+    color: #ffffff;
+    background: var(--accent-color);
+    text-shadow: none;
+    box-shadow: 0 4px 15px rgba(220, 20, 60, 0.4);
 }
 
 /* Social Links */
@@ -216,14 +224,14 @@ html {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background: #151515;
+    background: #e6dacc;
 }
 
 .page-content {
     max-width: 800px;
     flex: 1;
     background: transparent;
-    color: #fff;
+    color: #2a2a2a;
 }
 
 /* --- GAMIFICATION ELEMENTS (Subtle) --- */
@@ -278,7 +286,7 @@ html {
 h1,
 h2,
 h3 {
-    color: #fff;
+    color: #2a2a2a;
     font-weight: 700;
 }
 
@@ -288,19 +296,19 @@ p {
 }
 
 a {
-    color: #fff;
+    color: #2a2a2a;
     text-decoration: underline;
-    text-decoration-color: rgba(255, 255, 255, 0.5);
+    text-decoration-color: rgba(42, 42, 42, 0.5);
     text-underline-offset: 2px;
 }
 
 a:hover {
-    text-decoration-color: #fff;
+    text-decoration-color: #2a2a2a;
 }
 
 hr {
     height: 4px;
-    background: #fff;
+    background: #2a2a2a;
     opacity: 0.25;
     border: none;
 }
